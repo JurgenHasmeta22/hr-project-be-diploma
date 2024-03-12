@@ -1,4 +1,9 @@
-﻿using AutoMapper;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using AutoMapper;
 using DAL.Contracts;
 using DAL.UoW;
 using Domain.Contracts;
@@ -6,31 +11,25 @@ using DTO.UserDTO;
 using Entities.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.JsonPatch;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Domain.Concrete
 {
     public class PushimetZyrtareDomain : DomainBase, IPushimetZyrtareDomain
     {
-        public PushimetZyrtareDomain(IUnitOfWork unitOfWork, IMapper mapper, IHttpContextAccessor httpContextAccessor) : base(unitOfWork, mapper, httpContextAccessor)
-        {
-        }
-        private IPushimetZyrtareRepository pushimetRepository => _unitOfWork.GetRepository<IPushimetZyrtareRepository>();
+        public PushimetZyrtareDomain(IUnitOfWork unitOfWork, IMapper mapper, IHttpContextAccessor httpContextAccessor)
+            : base(unitOfWork, mapper, httpContextAccessor) { }
+
+        private IPushimetZyrtareRepository pushimetRepository =>
+            _unitOfWork.GetRepository<IPushimetZyrtareRepository>();
 
         public PushimeDTO AddPushim(PushimePostDTO pushim)
         {
-
             var pushimEntity = _mapper.Map<PushimetZyrtare>(pushim);
             pushimEntity.PushimId = Guid.NewGuid();
 
             var pushimfinal = pushimetRepository.Add(pushimEntity);
             _unitOfWork.Save();
             return _mapper.Map<PushimeDTO>(pushimfinal);
-
         }
 
         public IList<PushimeDTO> getAllPushime()
@@ -51,6 +50,7 @@ namespace Domain.Concrete
             _unitOfWork.Save();
             return _mapper.Map<PushimeDTO>(pushimentity);
         }
+
         public void DeletePushim(Guid PushimId)
         {
             if (pushimetRepository.GetById(PushimId) == null)
@@ -58,6 +58,7 @@ namespace Domain.Concrete
             pushimetRepository.Remove(PushimId);
             _unitOfWork.Save();
         }
+
         public PushimeDTO GetPushimById(Guid PushimId)
         {
             if (pushimetRepository.GetById(PushimId) == null)
@@ -65,7 +66,5 @@ namespace Domain.Concrete
             var pushimentity = pushimetRepository.GetById(PushimId);
             return _mapper.Map<PushimeDTO>(pushimentity);
         }
-
-
     }
 }

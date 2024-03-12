@@ -1,24 +1,24 @@
-﻿using AutoMapper;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
+using System.Text.RegularExpressions;
+using System.Threading.Tasks;
+using AutoMapper;
 using DAL.Contracts;
 using DAL.UoW;
 using Domain.Contracts;
 using DTO.AccountDTO;
 using DTO.UserDTO;
 using Entities.Models;
+using MailKit.Net.Smtp;
 using MailKit.Security;
 using Microsoft.AspNetCore.Http;
 using MimeKit;
-using MailKit.Net.Smtp;
 using MimeKit.Text;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
-using RestSharp.Authenticators;
 using RestSharp;
-using System.Text.RegularExpressions;
+using RestSharp.Authenticators;
 
 namespace Domain.Concrete
 {
@@ -26,8 +26,13 @@ namespace Domain.Concrete
     {
         private readonly ITokenService _tokenService;
 
-        public AccountDomain(IUnitOfWork unitOfWork, IMapper mapper,
-            IHttpContextAccessor httpContextAccessor, ITokenService tokenService) : base(unitOfWork, mapper, httpContextAccessor)
+        public AccountDomain(
+            IUnitOfWork unitOfWork,
+            IMapper mapper,
+            IHttpContextAccessor httpContextAccessor,
+            ITokenService tokenService
+        )
+            : base(unitOfWork, mapper, httpContextAccessor)
         {
             _tokenService = tokenService;
         }
@@ -37,7 +42,6 @@ namespace Domain.Concrete
 
         public TokenDTO Login(LoginDTO loginDTO)
         {
-
             var user = CheckUsername(loginDTO.userName);
 
             if (user == null)
@@ -103,11 +107,7 @@ namespace Domain.Concrete
 
             //SendEmail(registerDTO, password);
 
-            return new TokenDTO
-            {
-                Username = user.UserName,
-                Token = _tokenService.CreateToken(user)
-            };
+            return new TokenDTO { Username = user.UserName, Token = _tokenService.CreateToken(user) };
         }
 
         private void SendEmail(RegisterDTO registerDTO, string password)
@@ -119,14 +119,19 @@ namespace Domain.Concrete
 
             string roles = string.Join(", ", registerDTO.roles);
 
-            string textBody = "Hello, " + registerDTO.UserFirstname + "\n" +
-                "Your username is: " + registerDTO.UserName + "\n" +
-                "Your generated password is: " + password + "\n" +
-                "Your assigned roles are: " + roles;
-            email.Body = new TextPart(TextFormat.Plain)
-            {
-                Text = textBody
-            };
+            string textBody =
+                "Hello, "
+                + registerDTO.UserFirstname
+                + "\n"
+                + "Your username is: "
+                + registerDTO.UserName
+                + "\n"
+                + "Your generated password is: "
+                + password
+                + "\n"
+                + "Your assigned roles are: "
+                + roles;
+            email.Body = new TextPart(TextFormat.Plain) { Text = textBody };
 
             using var smtp = new SmtpClient();
             smtp.Connect("smtp.gmail.com", 587, SecureSocketOptions.StartTls);

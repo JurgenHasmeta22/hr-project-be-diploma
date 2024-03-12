@@ -11,6 +11,5 @@ namespace DTO.DokumentDto
         public Guid DokumentId { get; set; }
         public Guid Duid { get; set; }
         public byte[] Dokument { get; set; } = null!;
-
     }
 }

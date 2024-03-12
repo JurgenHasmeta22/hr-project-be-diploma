@@ -9,6 +9,5 @@ namespace DTO.EdukimDTO
     public class EdukimPostDTO
     {
         public string EduName { get; set; } = null!;
-
     }
 }

@@ -1,9 +1,9 @@
-﻿using Entities.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Entities.Models;
 
 namespace DTO.UserDTO
 {
@@ -13,10 +13,5 @@ namespace DTO.UserDTO
         public DateTime DataFillim { get; set; }
         public DateTime DataMbarim { get; set; }
         public string TipiLeje { get; set; } = null!;
-
-
-
-
-
     }
 }

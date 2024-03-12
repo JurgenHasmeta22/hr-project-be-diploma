@@ -1,4 +1,9 @@
-﻿using AutoMapper;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using AutoMapper;
 using DAL.Contracts;
 using DAL.UoW;
 using Domain.Contracts;
@@ -6,11 +11,6 @@ using DTO.RoleDTO;
 using DTO.UserDTO;
 using Entities.Models;
 using Microsoft.AspNetCore.Http;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Domain.Concrete
 {
@@ -19,9 +19,8 @@ namespace Domain.Concrete
 
     internal class RoliDomain : DomainBase, IRoliDomain
     {
-        public RoliDomain(IUnitOfWork unitOfWork, IMapper mapper, IHttpContextAccessor httpContextAccessor) : base(unitOfWork, mapper, httpContextAccessor)
-        {
-        }
+        public RoliDomain(IUnitOfWork unitOfWork, IMapper mapper, IHttpContextAccessor httpContextAccessor)
+            : base(unitOfWork, mapper, httpContextAccessor) { }
 
         private IRoliRepository roliRepositoryInstance => _unitOfWork.GetRepository<IRoliRepository>();
         private IUserRepository userRepositoryInstance => _unitOfWork.GetRepository<IUserRepository>();
@@ -163,7 +162,6 @@ namespace Domain.Concrete
                 currentPage = page,
                 pages = (int)nrPages
             };
-
         }
 
         public IEnumerable<RoleDTO> GetRoles(Guid userId)
@@ -180,5 +178,4 @@ namespace Domain.Concrete
             return _mapper.Map<IEnumerable<RoleDTO>>(list.AsEnumerable());
         }
     }
-
 }

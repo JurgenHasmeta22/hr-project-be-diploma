@@ -1,9 +1,9 @@
 ﻿using System;
-using Entities.Models;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Entities.Models;
 
 namespace DAL.Contracts
 {
@@ -11,5 +11,4 @@ namespace DAL.Contracts
     {
         Aftesi GetById(Guid id);
     }
-
 }

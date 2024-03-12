@@ -1,17 +1,17 @@
 global using HumanResourceProject;
-using DAL.Contracts;
+using System.Text;
 using DAL.Concrete;
+using DAL.Contracts;
 using DI;
+using Domain.Concrete;
+using Domain.Contracts;
 using Domain.Mappings;
 using Entities.Models;
-using Lamar.Microsoft.DependencyInjection;
-using Microsoft.EntityFrameworkCore;
-using Domain.Contracts;
-using Domain.Concrete;
 using HumanResourceProject.Extensions;
+using Lamar.Microsoft.DependencyInjection;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
-using System.Text;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.Filters;
 
@@ -29,19 +29,21 @@ builder.Services.AddEndpointsApiExplorer();
 
 builder.Services.AddSwaggerGen(options =>
 {
-    options.AddSecurityDefinition("JWT Bearer", new OpenApiSecurityScheme
-    {
-        Description = "Authorization scheme with JWT tokens.",
-        In = ParameterLocation.Header,
-        Name = "Authorization",
-        Type = SecuritySchemeType.ApiKey
-    });
+    options.AddSecurityDefinition(
+        "JWT Bearer",
+        new OpenApiSecurityScheme
+        {
+            Description = "Authorization scheme with JWT tokens.",
+            In = ParameterLocation.Header,
+            Name = "Authorization",
+            Type = SecuritySchemeType.ApiKey
+        }
+    );
 
     options.OperationFilter<SecurityRequirementsOperationFilter>();
 });
 
 builder.Services.AddAutoMapper(typeof(GeneralProfile));
-
 
 builder.Services.AddCors(options =>
 {
@@ -51,14 +53,15 @@ builder.Services.AddCors(options =>
 builder.Services.AddIdentityServices(builder.Configuration);
 
 // use Lamar as DI.
-builder.Host.UseLamar((context, registry) =>
-{
-    // register services using Lamar
-    registry.IncludeRegistry<RecrutimentRegistry>();
-    registry.IncludeRegistry<MapperRegistry>();
-    // add the controllers
-});
-
+builder.Host.UseLamar(
+    (context, registry) =>
+    {
+        // register services using Lamar
+        registry.IncludeRegistry<RecrutimentRegistry>();
+        registry.IncludeRegistry<MapperRegistry>();
+        // add the controllers
+    }
+);
 
 var app = builder.Build();
 
@@ -70,7 +73,6 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
 
 app.UseAuthentication();
 app.UseCors("AllowAll");

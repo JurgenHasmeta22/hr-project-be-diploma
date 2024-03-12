@@ -1,12 +1,11 @@
-﻿using DTO.UserDTO;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DTO.UserDTO;
 using Entities.Models;
 using Microsoft.AspNetCore.JsonPatch;
-
 
 namespace Domain.Contracts
 {
@@ -23,6 +22,5 @@ namespace Domain.Contracts
         void DeleteProject(Guid ProjektId);
 
         void PatchProject(Guid ProjektId, JsonPatchDocument patchDoc);
-
     }
 }

@@ -1,15 +1,16 @@
-﻿using DAL.Contracts;
-using Microsoft.EntityFrameworkCore;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
+using DAL.Contracts;
+using Microsoft.EntityFrameworkCore;
 
 namespace DAL.Concrete
 {
-    internal class BaseRepository<TEntity, TKey> : IRepository<TEntity, TKey> where TEntity : class
+    internal class BaseRepository<TEntity, TKey> : IRepository<TEntity, TKey>
+        where TEntity : class
     {
         protected readonly DbContext db;
         protected DbSet<TEntity> context;
@@ -19,14 +20,17 @@ namespace DAL.Concrete
             db = dbContext;
             context = db.Set<TEntity>();
         }
+
         public virtual TEntity Add(TEntity entity)
         {
-
             context.Add(entity);
-            db.ChangeTracker.TrackGraph(entity, e =>
-            {
-                e.Entry.State = EntityState.Added;
-            });
+            db.ChangeTracker.TrackGraph(
+                entity,
+                e =>
+                {
+                    e.Entry.State = EntityState.Added;
+                }
+            );
 
             return context.Add(entity).Entity;
         }
@@ -35,12 +39,14 @@ namespace DAL.Concrete
         {
             foreach (var entity in entities)
             {
-
                 context.Add(entity);
-                db.ChangeTracker.TrackGraph(entity, e =>
-                {
-                    e.Entry.State = EntityState.Added;
-                });
+                db.ChangeTracker.TrackGraph(
+                    entity,
+                    e =>
+                    {
+                        e.Entry.State = EntityState.Added;
+                    }
+                );
             }
 
             context.AddRange(entities);
@@ -81,9 +87,7 @@ namespace DAL.Concrete
             context.Attach(entity);
             var statusProperty = entity.GetType().GetProperty("StatusId");
 
-            if (statusProperty != null)
-            {
-            }
+            if (statusProperty != null) { }
             else
             {
                 context.Remove(entity);
@@ -122,6 +126,7 @@ namespace DAL.Concrete
                 SetModified(entity);
             }
         }
+
         public void PersistChangesToTrackedEntities()
         {
             db.SaveChanges();
@@ -141,9 +146,5 @@ namespace DAL.Concrete
         {
             db.Entry(entity).State = EntityState.Detached;
         }
-
-
-
-
     }
 }

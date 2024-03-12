@@ -1,9 +1,10 @@
 ﻿using Domain.Concrete;
 using Domain.Contracts;
+using DTO.UserDTO;
 using Entities.Models;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
-using DTO.UserDTO;
+
 namespace HumanResourceProject.Controllers
 {
     [ApiController]
@@ -127,7 +128,7 @@ namespace HumanResourceProject.Controllers
         //[HttpPatch]
         //[Route("{AftesiId}")]
         //public IActionResult UpdateAftesi(Guid AftesiId, JsonPatchDocument patchDoc)
-        //{ 
+        //{
         //    try
         //    {
         //        if (!ModelState.IsValid)

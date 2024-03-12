@@ -13,6 +13,5 @@ namespace DTO.EdukimDTO
         public DateTime? DataMbarim { get; set; }
         public string LlojiMaster { get; set; } = null!;
         // public byte[]? DokumentDiplome { get; set; }
-
     }
 }

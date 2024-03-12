@@ -1,15 +1,15 @@
-﻿using Domain.Contracts;
-using Entities.Models;
-using Microsoft.Extensions.Configuration;
-using Microsoft.IdentityModel.Tokens;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using Domain.Contracts;
 using DTO;
+using Entities.Models;
+using Microsoft.Extensions.Configuration;
+using Microsoft.IdentityModel.Tokens;
 
 namespace Domain.Concrete
 {
@@ -26,9 +26,7 @@ namespace Domain.Concrete
 
         public string CreateToken(AppUser user)
         {
-            var claims = new List<Claim> {
-                new Claim(JwtRegisteredClaimNames.NameId, user.UserName)
-            };
+            var claims = new List<Claim> { new Claim(JwtRegisteredClaimNames.NameId, user.UserName) };
 
             var roles = _roliDomain.GetRoles(user.UserId);
 

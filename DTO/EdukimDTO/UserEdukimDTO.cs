@@ -1,9 +1,9 @@
-using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 
 namespace DTO.EdukimDTO
 {
@@ -15,7 +15,6 @@ namespace DTO.EdukimDTO
         public string LlojiMaster { get; set; } = null!;
 
         public byte[]? DokumentDiplome { get; set; } = null!;
-
 
         public Guid UserId { get; set; }
         public Guid EduId { get; set; }

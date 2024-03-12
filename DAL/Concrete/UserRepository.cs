@@ -1,39 +1,35 @@
-﻿using DAL.Contracts;
-using Entities.Models;
-using Microsoft.EntityFrameworkCore;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DAL.Contracts;
+using Entities.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace DAL.Concrete
 {
     internal class UserRepository : BaseRepository<AppUser, Guid>, IUserRepository
     {
+        public UserRepository(HRDBContext dbContext)
+            : base(dbContext) { }
 
-        public UserRepository(HRDBContext dbContext) : base(dbContext)
-        {
-        }
         public AppUser GetById1(Guid id)
         {
             return context.Where(x => x.UserId == id).FirstOrDefault();
-
         }
+
         public AppUser GetById(Guid id)
         {
-            return context.Include(x => x.UserProjekts)
+            return context
+                .Include(x => x.UserProjekts)
                 .ThenInclude(x => x.Projekt)
-
                 .Include(x => x.UserRolis)
                 .ThenInclude(x => x.Roli)
-
                 .Include(x => x.UserPervojePunes)
                 .ThenInclude(x => x.Pp)
-
                 .Include(x => x.UserEdukims)
                 .ThenInclude(x => x.Edu)
-
                 .Include(x => x.UserCertifikates)
                 .ThenInclude(x => x.Cert)
                 .Include(x => x.UserAftesis)
@@ -44,7 +40,6 @@ namespace DAL.Concrete
                 //.ThenInclude(x => x.)
                 .Where(x => x.UserId == id)
                 .FirstOrDefault();
-
         }
 
         public AppUser GetByUserName(string username)
@@ -59,6 +54,7 @@ namespace DAL.Concrete
                 return true;
             return false;
         }
+
         public IEnumerable<AppUser> getAllusers()
         {
             return context.Where(x => x.UserIsActive == true);
@@ -68,7 +64,7 @@ namespace DAL.Concrete
         {
             var user = GetById(userId);
 
-            // prohibit referenceException 
+            // prohibit referenceException
             if (user == null)
                 return null;
 
@@ -80,7 +76,7 @@ namespace DAL.Concrete
         {
             var user = GetById(userId);
 
-            // prohibit referenceException 
+            // prohibit referenceException
             if (user == null)
                 return null;
 

@@ -8,11 +8,8 @@ namespace DTO.EdukimDTO
 {
     public class EdukimDTO
     {
-
         public Guid EduId { get; set; }
         public string EduName { get; set; } = null!;
         public virtual ICollection<UserEdukimDTO1> UserEdukims { get; set; } = null!;
-
-
     }
 }

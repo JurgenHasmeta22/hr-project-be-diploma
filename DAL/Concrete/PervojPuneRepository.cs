@@ -1,26 +1,28 @@
-﻿using DAL.Contracts;
-using Entities.Models;
-using Microsoft.EntityFrameworkCore;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DAL.Contracts;
+using Entities.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace DAL.Concrete
 {
     internal class PervojPuneRepository : BaseRepository<PervojePune, Guid>, IPervojPuneRepository
     {
-
 #pragma warning disable CS8603 // Possible null reference return.
 
-        public PervojPuneRepository(HRDBContext dbContext) : base(dbContext)
-        {
-        }
+        public PervojPuneRepository(HRDBContext dbContext)
+            : base(dbContext) { }
 
         public override PervojePune GetById(Guid PPId)
         {
-            var workExp = context.Include(x => x.UserPervojePunes).ThenInclude(x => x.User).Where(x => x.Ppid == PPId).FirstOrDefault();
+            var workExp = context
+                .Include(x => x.UserPervojePunes)
+                .ThenInclude(x => x.User)
+                .Where(x => x.Ppid == PPId)
+                .FirstOrDefault();
             return workExp;
         }
 
@@ -51,9 +53,7 @@ namespace DAL.Concrete
 
         public IEnumerable<PervojePune> Paginate(int currentPage, int resultPerPage, int pageCnt)
         {
-            var list = context.Skip((currentPage - 1) * resultPerPage)
-                .Take(resultPerPage)
-                .ToList();
+            var list = context.Skip((currentPage - 1) * resultPerPage).Take(resultPerPage).ToList();
             return list.AsEnumerable();
         }
     }

@@ -11,6 +11,5 @@ namespace DTO.UserDTO
     {
         public Guid Ppid { get; set; }
         public string Ppemri { get; set; } = null!;
-
     }
 }

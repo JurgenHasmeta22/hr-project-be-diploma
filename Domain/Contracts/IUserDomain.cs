@@ -1,13 +1,13 @@
-﻿using DTO.CertifikateDTO;
-using DTO.EdukimDTO;
-using DTO.UpdateDTO;
-using DTO.UserDTO;
-using Entities.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DTO.CertifikateDTO;
+using DTO.EdukimDTO;
+using DTO.UpdateDTO;
+using DTO.UserDTO;
+using Entities.Models;
 using UserXDTO;
 
 namespace Domain.Contracts
@@ -20,6 +20,7 @@ namespace Domain.Contracts
         UserDTO PutUser(Guid UserId, UserPostDTO user);
         void AddUserProject(Guid UserId, Guid ProjektId, UserProjektPostDTO userprojekt);
         void DeleteUserProject(Guid UserId, Guid ProjektId);
+
         // LejeDTOwithUser AddLeje(Guid UserId, LejePostDTO leje);
         bool KerkoLeje(Guid UserId, LejePostDTO leje);
         void DeleteLeje(Guid UserId);
@@ -46,7 +47,5 @@ namespace Domain.Contracts
         UserRoliDTOX UpdateUserRoli(Guid UserId, Guid RoliId, UserRoliPutDTO roliDTO);
 
         // IList<UserDTO1> GetAllUsers1();
-
-
     }
 }

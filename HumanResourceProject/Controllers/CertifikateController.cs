@@ -15,10 +15,7 @@ namespace HumanResourceProject.Controllers
         public CertifikateController(CertifikateDomain certifikateDomain)
         {
             _CertifikateDomain = certifikateDomain;
-
-
         }
-
 
         [HttpGet]
         [Route("GetAllCertifikate")]
@@ -48,10 +45,8 @@ namespace HumanResourceProject.Controllers
         }
 
         [HttpPost]
-
         public IActionResult CreateCertifikate(CertifikatePostDTO certifikate)
         {
-
             try
             {
                 if (!ModelState.IsValid)
@@ -64,20 +59,12 @@ namespace HumanResourceProject.Controllers
 
                 var CreateCertifikate = _CertifikateDomain.AddCertifikate(certifikate);
                 return Ok(CreateCertifikate);
-
-
-
             }
-
             catch (Exception ex)
             {
                 return StatusCode(500, ex);
             }
-
         }
-
-
-
 
         [HttpGet]
         [Route("GetById/{CertId}")]
@@ -95,14 +82,11 @@ namespace HumanResourceProject.Controllers
 
                 return NotFound();
             }
-
             catch (Exception)
             {
                 throw;
             }
         }
-
-
 
         [HttpDelete]
         [Route("{CertId}")]
@@ -114,24 +98,17 @@ namespace HumanResourceProject.Controllers
                     return BadRequest();
                 _CertifikateDomain.DeleteCertifikate(CertId);
                 return NoContent();
-
-
             }
             catch (Exception)
             {
                 return NotFound();
             }
-
-
-
-
         }
 
         [HttpPut]
         [Route("{CertId}")]
         public IActionResult UpdateCertifikate(Guid CertId, CertifikatePostDTO certifikate)
         {
-
             try
             {
                 if (!ModelState.IsValid)
@@ -139,18 +116,14 @@ namespace HumanResourceProject.Controllers
                     return BadRequest();
                 }
 
-
                 _CertifikateDomain.PutCertifikate(CertId, certifikate);
 
                 return NoContent();
-
             }
-
             catch (Exception ex)
             {
                 return StatusCode(500, ex);
             }
-
         }
 
         //[HttpPatch]
@@ -178,10 +151,5 @@ namespace HumanResourceProject.Controllers
         //    }
 
         //}
-
-
-
-
     }
 }
-

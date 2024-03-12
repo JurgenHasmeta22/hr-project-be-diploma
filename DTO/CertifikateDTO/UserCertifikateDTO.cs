@@ -1,11 +1,11 @@
-﻿using Microsoft.AspNetCore.Http;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Entities.Models;
 using DTO.UserDTO;
+using Entities.Models;
+using Microsoft.AspNetCore.Http;
 
 namespace DTO.CertifikateDTO
 {

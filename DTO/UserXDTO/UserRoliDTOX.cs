@@ -8,6 +8,5 @@ namespace UserXDTO
         public Guid UserId { get; set; }
         public Guid RoliId { get; set; }
         public DateTime? DataCaktimit { get; set; }
-
     }
 }

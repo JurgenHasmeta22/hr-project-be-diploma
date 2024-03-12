@@ -12,7 +12,5 @@ namespace UserXDTO
         public string? PershkrimiPunes { get; set; }
         public Guid Ppid { get; set; }
         public Guid UserId { get; set; }
-
     }
 }
-

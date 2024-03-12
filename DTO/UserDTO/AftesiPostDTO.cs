@@ -9,7 +9,5 @@ namespace DTO.UserDTO
     public class AftesiPostDTO
     {
         public string llojiAftesise { get; set; } = null!;
-
     }
 }
-

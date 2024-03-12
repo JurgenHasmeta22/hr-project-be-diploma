@@ -1,9 +1,9 @@
-﻿using Entities.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Entities.Models;
 
 namespace DAL.Contracts
 {
@@ -16,7 +16,6 @@ namespace DAL.Contracts
         IEnumerable<AppUser> getAllusers();
         ICollection<UserRoli> GetRolesOfUser(Guid userId);
         ICollection<UserPervojePune> GetPPOfUser(Guid userId);
-
     }
 
     namespace DAL.Contracts

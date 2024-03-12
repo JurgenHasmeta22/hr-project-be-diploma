@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace HumanResourceProject.Controllers
 {
-
     [ApiController]
     [Route("[controller]")]
     public class LejeController : ControllerBase
@@ -15,8 +14,6 @@ namespace HumanResourceProject.Controllers
         public LejeController(ILejeDomain lejeDomain)
         {
             _lejeDomain = lejeDomain;
-
-
         }
 
         [HttpGet]
@@ -46,9 +43,5 @@ namespace HumanResourceProject.Controllers
                 return StatusCode(500, ex);
             }
         }
-
-
-
-
     }
 }

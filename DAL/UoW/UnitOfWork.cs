@@ -20,7 +20,8 @@ namespace DAL.UoW
             _context = context;
         }
 
-        public TRepository GetRepository<TRepository>() where TRepository : class
+        public TRepository GetRepository<TRepository>()
+            where TRepository : class
         {
             return _container.GetInstance<TRepository>();
         }
@@ -36,5 +37,4 @@ namespace DAL.UoW
             GC.SuppressFinalize(this);
         }
     }
-
 }

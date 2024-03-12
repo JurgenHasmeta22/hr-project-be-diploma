@@ -1,9 +1,9 @@
-﻿using DTO.UserDTO;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DTO.UserDTO;
 
 namespace DTO.EdukimDTO
 {
@@ -20,6 +20,5 @@ namespace DTO.EdukimDTO
         public Guid UserId { get; set; }
         public Guid EduId { get; set; }
         public virtual UserDTO1 User { get; set; } = null!;
-
     }
 }

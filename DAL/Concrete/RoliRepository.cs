@@ -1,11 +1,11 @@
-﻿using DAL.Contracts;
-using Entities.Models;
-using Microsoft.EntityFrameworkCore;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DAL.Contracts;
+using Entities.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace DAL.Concrete
 {
@@ -14,13 +14,16 @@ namespace DAL.Concrete
 #pragma warning disable CS8602 // Dereference of a possibly null reference.
 #pragma warning disable CS8603 // Possible null reference return.
 
-        public RoliRepository(HRDBContext dbContext) : base(dbContext)
-        {
-        }
+        public RoliRepository(HRDBContext dbContext)
+            : base(dbContext) { }
 
         public override Roli GetById(Guid id)
         {
-            var role = context.Include(x => x.UserRolis).ThenInclude(x => x.User).Where(x => x.RoliId == id).FirstOrDefault();
+            var role = context
+                .Include(x => x.UserRolis)
+                .ThenInclude(x => x.User)
+                .Where(x => x.RoliId == id)
+                .FirstOrDefault();
             return role;
         }
 
@@ -57,9 +60,7 @@ namespace DAL.Concrete
 
         public IEnumerable<Roli> Paginate(int currentPage, int resultPerPage, int pageCnt)
         {
-            var list = context.Skip((currentPage - 1) * resultPerPage)
-                .Take(resultPerPage)
-                .ToList();
+            var list = context.Skip((currentPage - 1) * resultPerPage).Take(resultPerPage).ToList();
             return list.AsEnumerable();
         }
     }

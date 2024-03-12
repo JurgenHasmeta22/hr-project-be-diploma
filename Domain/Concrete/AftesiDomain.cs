@@ -1,4 +1,9 @@
-﻿using AutoMapper;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using AutoMapper;
 using DAL.Contracts;
 using DAL.UoW;
 using Domain.Contracts;
@@ -6,19 +11,13 @@ using DTO.UserDTO;
 using Entities.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.JsonPatch;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Domain.Concrete
 {
     public class AftesiDomain : DomainBase, IAftesiDomain
     {
-        public AftesiDomain(IUnitOfWork unitOfWork, IMapper mapper, IHttpContextAccessor httpContextAccessor) : base(unitOfWork, mapper, httpContextAccessor)
-        {
-        }
+        public AftesiDomain(IUnitOfWork unitOfWork, IMapper mapper, IHttpContextAccessor httpContextAccessor)
+            : base(unitOfWork, mapper, httpContextAccessor) { }
 
         private IAftesiRepository AftesiRepository => _unitOfWork.GetRepository<IAftesiRepository>();
 
@@ -41,9 +40,7 @@ namespace Domain.Concrete
                     throw new Exception();
                 AftesiRepository.Remove(AftesiId);
                 _unitOfWork.Save();
-
             }
-
             catch (Exception)
             {
                 throw;

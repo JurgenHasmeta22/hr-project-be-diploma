@@ -1,9 +1,9 @@
-﻿using DTO.UserDTO;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DTO.UserDTO;
 
 namespace DTO.CertifikateDTO
 {
@@ -11,6 +11,7 @@ namespace DTO.CertifikateDTO
     {
         public DateTime DataFituar { get; set; }
         public DateTime DataSkadence { get; set; }
+
         // public IFormFile DokumentCertifikate { get; set; } = null!;
 
         public Guid UserId { get; set; }

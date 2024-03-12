@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace HumanResourceProject.Controllers
 {
-
     [ApiController]
     [Route("[controller]")]
     public class PushimetZyrtareController : ControllerBase
@@ -15,10 +14,7 @@ namespace HumanResourceProject.Controllers
         public PushimetZyrtareController(IPushimetZyrtareDomain pushimetZyrtareDomain)
         {
             _pushimetZyrtareDomain = pushimetZyrtareDomain;
-
-
         }
-
 
         [HttpGet]
         [Route("getAllPushime")]
@@ -49,10 +45,8 @@ namespace HumanResourceProject.Controllers
         }
 
         [HttpPost]
-
         public IActionResult CreatePushim([FromBody] PushimePostDTO pushim)
         {
-
             try
             {
                 if (!ModelState.IsValid)
@@ -65,24 +59,17 @@ namespace HumanResourceProject.Controllers
 
                 var createdPushim = _pushimetZyrtareDomain.AddPushim(pushim);
                 return Ok(createdPushim);
-
-
             }
-
             catch (Exception ex)
             {
                 return StatusCode(500, ex);
             }
-
         }
-
 
         [HttpDelete]
         [Route("{PushimId}")]
         public IActionResult DeletePushim(Guid PushimId)
         {
-
-
             try
             {
                 if (!ModelState.IsValid)
@@ -91,23 +78,17 @@ namespace HumanResourceProject.Controllers
                 _pushimetZyrtareDomain.DeletePushim(PushimId);
 
                 return NoContent();
-
             }
-
             catch (Exception ex)
             {
                 return NotFound();
             }
-
-
-
         }
 
         [HttpPut]
         [Route("{PushimId}")]
         public IActionResult UpdatePushim(Guid PushimId, PushimePostDTO pushim)
         {
-
             try
             {
                 if (!ModelState.IsValid)
@@ -115,21 +96,15 @@ namespace HumanResourceProject.Controllers
                     return BadRequest();
                 }
 
-
                 var pushimi = _pushimetZyrtareDomain.PutPushim(PushimId, pushim);
 
                 return Ok(pushimi);
-
             }
-
             catch (Exception ex)
             {
                 return StatusCode(500, ex);
             }
-
         }
-
-
 
         [HttpGet]
         [Route("{PushimId}")]
@@ -143,19 +118,10 @@ namespace HumanResourceProject.Controllers
 
                 return Ok(pushimi);
             }
-
             catch (Exception ex)
             {
                 throw;
             }
         }
-
-
-
-
-
     }
-
-
 }
-

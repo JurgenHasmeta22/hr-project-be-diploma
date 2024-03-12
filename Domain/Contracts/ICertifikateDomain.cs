@@ -1,11 +1,11 @@
-﻿using DTO.CertifikateDTO;
-using DTO.UserDTO;
-using Microsoft.AspNetCore.JsonPatch;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DTO.CertifikateDTO;
+using DTO.UserDTO;
+using Microsoft.AspNetCore.JsonPatch;
 
 namespace Domain.Contracts
 {
@@ -17,6 +17,5 @@ namespace Domain.Contracts
 
         void PutCertifikate(Guid CertId, CertifikatePostDTO certifikate);
         void DeleteCertifikate(Guid CertId);
-
     }
 }

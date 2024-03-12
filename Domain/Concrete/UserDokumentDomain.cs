@@ -1,22 +1,21 @@
-﻿using AutoMapper;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using AutoMapper;
 using DAL.UoW;
 using Domain.Contracts;
 using DTO.DokumentDto;
 using DTO.UserDTO;
 using Microsoft.AspNetCore.Http;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Domain.Concrete
 {
     public class UserDokumentDomain : DomainBase, IUserDokumentDomain
     {
-        public UserDokumentDomain(IUnitOfWork unitOfWork, IMapper mapper, IHttpContextAccessor httpContextAccessor) : base(unitOfWork, mapper, httpContextAccessor)
-        {
-        }
+        public UserDokumentDomain(IUnitOfWork unitOfWork, IMapper mapper, IHttpContextAccessor httpContextAccessor)
+            : base(unitOfWork, mapper, httpContextAccessor) { }
 
         public void AddUserDokument(Guid UserId, Guid Duid, DokumentPostDTO dokument)
         {

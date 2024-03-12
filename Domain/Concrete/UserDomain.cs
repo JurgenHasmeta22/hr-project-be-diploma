@@ -1,4 +1,9 @@
-﻿using AutoMapper;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using AutoMapper;
 using DAL.Contracts;
 using DAL.UoW;
 using Domain.Contracts;
@@ -9,20 +14,14 @@ using DTO.UserDTO;
 using Entities.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UserXDTO;
 
 namespace Domain.Concrete
 {
     internal class UserDomain : DomainBase, IUserDomain
     {
-        public UserDomain(IUnitOfWork unitOfWork, IMapper mapper, IHttpContextAccessor httpContextAccessor) : base(unitOfWork, mapper, httpContextAccessor)
-        {
-        }
+        public UserDomain(IUnitOfWork unitOfWork, IMapper mapper, IHttpContextAccessor httpContextAccessor)
+            : base(unitOfWork, mapper, httpContextAccessor) { }
 
         private IUserRepository userRepository => _unitOfWork.GetRepository<IUserRepository>();
         private IProjektRepository projektRepository => _unitOfWork.GetRepository<IProjektRepository>();
@@ -34,15 +33,15 @@ namespace Domain.Concrete
         private IAftesiRepository aftesiRepository => _unitOfWork.GetRepository<IAftesiRepository>();
         private IPervojPuneRepository pervojePuneRepository => _unitOfWork.GetRepository<IPervojPuneRepository>();
         private IUserAftesiRepository userAftesiRepository => _unitOfWork.GetRepository<IUserAftesiRepository>();
-        private IUserCertifikateRepository userCertifikateRepository => _unitOfWork.GetRepository<IUserCertifikateRepository>();
+        private IUserCertifikateRepository userCertifikateRepository =>
+            _unitOfWork.GetRepository<IUserCertifikateRepository>();
         private IUserProjektRepository userProjektRepository => _unitOfWork.GetRepository<IUserProjektRepository>();
         private IUserRoliRepository userRoliRepository => _unitOfWork.GetRepository<IUserRoliRepository>();
-        private IUserPervojePuneRepository userPervojePuneRepository => _unitOfWork.GetRepository<IUserPervojePuneRepository>();
+        private IUserPervojePuneRepository userPervojePuneRepository =>
+            _unitOfWork.GetRepository<IUserPervojePuneRepository>();
         private IUserEdukimRepository userEdukimRepository => _unitOfWork.GetRepository<IUserEdukimRepository>();
 
         private IRoliRepository roliRepository => _unitOfWork.GetRepository<IRoliRepository>();
-
-
 
         public IList<UserDTO1> GetAllUsers()
         {
@@ -53,14 +52,13 @@ namespace Domain.Concrete
             return test;
         }
 
-
-
         public UserDTO GetUserById(Guid id)
         {
             AppUser user = userRepository.GetById(id);
 
             return _mapper.Map<UserDTO>(user);
         }
+
         public UserDTO PutUser(Guid UserId, UserPostDTO user)
         {
             var userentity = userRepository.GetById(UserId);
@@ -73,6 +71,7 @@ namespace Domain.Concrete
             _unitOfWork.Save();
             return _mapper.Map<UserDTO>(userentity);
         }
+
         public void AddUserProject(Guid UserId, Guid ProjektId, UserProjektPostDTO userprojekt)
         {
             var user = userRepository.GetById(UserId);
@@ -89,7 +88,6 @@ namespace Domain.Concrete
             userprojektentity.UserId = UserId;
             userprojektentity.ProjektId = ProjektId;
 
-
             if (user.UserProjekts.Contains(userprojektentity) == true)
                 throw new ArgumentException("User already has project");
 
@@ -105,7 +103,6 @@ namespace Domain.Concrete
             {
                 if (userproject.UserId == UserId && userproject.ProjektId == ProjektId)
                     userprojects.Remove(userproject);
-
             }
             _unitOfWork.Save();
         }
@@ -135,12 +132,13 @@ namespace Domain.Concrete
 
                 var lejeFinal = lejeRepository.Add(lejeEntity);
 
-
                 _unitOfWork.Save();
                 return true;
             }
-            else return false;
+            else
+                return false;
         }
+
         public void DeleteLeje(Guid LejeId)
         {
             var leje = lejeRepository.GetById(LejeId);
@@ -151,6 +149,7 @@ namespace Domain.Concrete
 
             _unitOfWork.Save();
         }
+
         public void UpdateLeje(Guid LejeId, LejePostDTO leje)
         {
             var lejeEntity = lejeRepository.GetById(LejeId);
@@ -162,6 +161,7 @@ namespace Domain.Concrete
             lejeRepository.Update(lejeEntity);
             _unitOfWork.Save();
         }
+
         public void UpdateBalance(Guid userId)
         {
             var user = userRepository.GetById(userId);
@@ -181,7 +181,9 @@ namespace Domain.Concrete
             if (detajet != null)
             {
                 int shtimiBalances;
-                double months = Math.Abs((detajet.DataFillim.Month - DateTime.Now.Month) + 12 * (detajet.DataFillim.Year - DateTime.Now.Year));
+                double months = Math.Abs(
+                    (detajet.DataFillim.Month - DateTime.Now.Month) + 12 * (detajet.DataFillim.Year - DateTime.Now.Year)
+                );
                 if (months > 12)
                 {
                     shtimiBalances = (int)Math.Round(months * 1.7) - 20;
@@ -197,9 +199,8 @@ namespace Domain.Concrete
                     _unitOfWork.Save();
                 }
             }
-
-
         }
+
         public int KontrolloLejen(Leje leje)
         {
             int count = 0;
@@ -212,20 +213,16 @@ namespace Domain.Concrete
                     else
                         ++count;
                 }
-
-                else
-                {
-
-                }
+                else { }
             }
             return count;
         }
+
         public IEnumerable<DateTime> EachDay(DateTime from, DateTime thru)
         {
             for (var day = from.Date; day.Date <= thru.Date; day = day.AddDays(1))
                 yield return day;
         }
-
 
         public void ApproveLeje(Guid LejeId)
         {
@@ -237,7 +234,6 @@ namespace Domain.Concrete
             _unitOfWork.Save();
         }
 
-
         public void DisapproveLeje(Guid LejeId)
         {
             var leje = lejeRepository.GetById(LejeId);
@@ -246,10 +242,6 @@ namespace Domain.Concrete
             lejeRepository.Update(leje);
             _unitOfWork.Save();
         }
-
-
-
-
 
         public void AddUserEdukim(Guid UserId, Guid eduId, UserEdukimPostDTO useredukim)
         {
@@ -267,7 +259,6 @@ namespace Domain.Concrete
             userEdukimEntity.UserId = UserId;
             userEdukimEntity.EduId = eduId;
 
-
             if (user.UserEdukims.Contains(userEdukimEntity) == true)
                 throw new ArgumentException("user has already this edukim");
 
@@ -283,12 +274,9 @@ namespace Domain.Concrete
             {
                 if (useredukim.UserId == UserId && useredukim.EduId == eduId)
                     useredukims.Remove(useredukim);
-
             }
             _unitOfWork.Save();
         }
-
-
 
         public void DeleteUserCertifikate(Guid UserId, Guid CertId)
         {
@@ -298,7 +286,6 @@ namespace Domain.Concrete
             {
                 if (usercertifikate.UserId == UserId && usercertifikate.CertId == CertId)
                     usercertifikates.Remove(usercertifikate);
-
             }
             _unitOfWork.Save();
         }
@@ -319,14 +306,13 @@ namespace Domain.Concrete
             UserCertifikateEntity.UserId = UserId;
             UserCertifikateEntity.CertId = CertId;
 
-
             if (user.UserCertifikates.Contains(UserCertifikateEntity) == true)
                 throw new ArgumentException("user has already this certifikate");
 
             user.UserCertifikates.Add(UserCertifikateEntity);
             _unitOfWork.Save();
-
         }
+
         public void AddUserAftesi(Guid UserId, Guid aftesiId, UserAftesiPostDTO useraftesi)
         {
             var user = userRepository.GetById(UserId);
@@ -361,6 +347,7 @@ namespace Domain.Concrete
             }
             _unitOfWork.Save();
         }
+
         public void DeleteUserPervojePune(Guid UserId, Guid PPId)
         {
             var user = userRepository.GetById(UserId);
@@ -372,6 +359,7 @@ namespace Domain.Concrete
             }
             _unitOfWork.Save();
         }
+
         public UserPervojePuneDTOX UpdateUserPervojePune(Guid UserId, Guid PPId, UserPervojePunePutDTO ppDTO)
         {
             var user = userRepository.GetById(UserId);
@@ -391,6 +379,7 @@ namespace Domain.Concrete
             _unitOfWork.Save();
             return _mapper.Map<UserPervojePuneDTOX>(userPervojePuneEntity);
         }
+
         public UserAftesiDTOX UpdateUserAftesi(Guid UserId, Guid aftesiId, UserAftesiPutDTO aftesiDTO)
         {
             var user = userRepository.GetById(UserId);
@@ -410,6 +399,7 @@ namespace Domain.Concrete
             _unitOfWork.Save();
             return _mapper.Map<UserAftesiDTOX>(userAftesiEntity);
         }
+
         public UserCertifikateDTOX UpdateUserCertifikate(Guid UserId, Guid CertId, UserCertifikatePutDTO certDTO)
         {
             var user = userRepository.GetById(UserId);
@@ -429,6 +419,7 @@ namespace Domain.Concrete
             _unitOfWork.Save();
             return _mapper.Map<UserCertifikateDTOX>(userCertifikateEntity);
         }
+
         public UserEdukimDTOX UpdateUserEdukim(Guid UserId, Guid EduId, UserEdukimPutDTO eduDTO)
         {
             var user = userRepository.GetById(UserId);
@@ -489,9 +480,5 @@ namespace Domain.Concrete
 
             return _mapper.Map<UserRoliDTOX>(userRoliEntity);
         }
-
-
-
     }
 }
-

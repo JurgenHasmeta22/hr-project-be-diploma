@@ -1,13 +1,13 @@
-﻿using DAL.DI;
-using Domain.Concrete;
-using Domain.Contracts;
-using Lamar;
-using Microsoft.AspNetCore.Http;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DAL.DI;
+using Domain.Concrete;
+using Domain.Contracts;
+using Lamar;
+using Microsoft.AspNetCore.Http;
 
 namespace Domain.DI
 {
@@ -28,7 +28,8 @@ namespace Domain.DI
             For<IRoliDomain>().Use<RoliDomain>();
             For<IPervojePuneDomain>().Use<PervojePuneDomain>();
             //  For<IUserPervojePuneDomain>().Use<UserPervojePuneDomain>();
-            For<IPushimetZyrtareDomain>().Use<PushimetZyrtareDomain>();
+            For<IPushimetZyrtareDomain>()
+                .Use<PushimetZyrtareDomain>();
             For<ILejeDomain>().Use<LejeDomain>();
 
             AddRepositoryRegistries();

@@ -10,6 +10,5 @@ namespace DTO.UserDTO
     {
         public Guid EduId { get; set; }
         public string EduName { get; set; } = null!;
-
     }
 }

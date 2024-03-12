@@ -1,4 +1,9 @@
-﻿using AutoMapper;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using AutoMapper;
 using DAL.Contracts;
 using DAL.UoW;
 using Domain.Contracts;
@@ -6,11 +11,6 @@ using DTO.PervojePuneDTO;
 using DTO.UserDTO;
 using Entities.Models;
 using Microsoft.AspNetCore.Http;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Domain.Concrete
 {
@@ -19,9 +19,8 @@ namespace Domain.Concrete
 
     internal class PervojePuneDomain : DomainBase, IPervojePuneDomain
     {
-        public PervojePuneDomain(IUnitOfWork unitOfWork, IMapper mapper, IHttpContextAccessor httpContextAccessor) : base(unitOfWork, mapper, httpContextAccessor)
-        {
-        }
+        public PervojePuneDomain(IUnitOfWork unitOfWork, IMapper mapper, IHttpContextAccessor httpContextAccessor)
+            : base(unitOfWork, mapper, httpContextAccessor) { }
 
         private IPervojPuneRepository PPRepositoryInstance => _unitOfWork.GetRepository<IPervojPuneRepository>();
         private IUserRepository userRepositoryInstance => _unitOfWork.GetRepository<IUserRepository>();
@@ -39,7 +38,6 @@ namespace Domain.Concrete
         {
             var pervojePune = PPRepositoryInstance.GetAll();
             return _mapper.Map<IEnumerable<PervojePuneDTO>>(pervojePune);
-
         }
 
         public PervojePuneDTO GetPervojePune(Guid ppId)

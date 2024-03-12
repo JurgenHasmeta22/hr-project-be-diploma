@@ -33,9 +33,7 @@ namespace DAL.DI
             For<IUserPervojePuneRepository>().Use<UserPervojePuneRepository>();
             For<IUserProjektRepository>().Use<UserProjektRepository>();
 
-
             For<IPushimetZyrtareRepository>().Use<PushimetZyrtareRepository>();
-
         }
     }
 }

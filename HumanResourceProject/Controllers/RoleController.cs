@@ -5,12 +5,10 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace HumanResourceProject.Controllers
 {
-
     [ApiController]
     [Route("api/[controller]")]
     public class RoleController : ControllerBase
     {
-
         private readonly IRoliDomain _roliDomain;
 
         public RoleController(IRoliDomain roliDomain)
@@ -289,4 +287,3 @@ namespace HumanResourceProject.Controllers
         }
     }
 }
-

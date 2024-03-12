@@ -1,4 +1,9 @@
-﻿using AutoMapper;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using AutoMapper;
 using DTO.AccountDTO;
 using DTO.CertifikateDTO;
 using DTO.EdukimDTO;
@@ -7,15 +12,11 @@ using DTO.RoleDTO;
 using DTO.UpdateDTO;
 using DTO.UserDTO;
 using Entities.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UserXDTO;
 using UserCertifikateDTO = DTO.CertifikateDTO.UserCertifikateDTO;
 using UserEdukimDTO = DTO.UserDTO.UserEdukimDTO;
 using UserEdukimDTOED = DTO.EdukimDTO.UserEdukimDTO;
+
 namespace Domain.Mappings
 {
     public class GeneralProfile : Profile
@@ -61,13 +62,11 @@ namespace Domain.Mappings
             CreateMap<Projekt, Projekt1DTO>().ReverseMap();
             CreateMap<Edukim, EdukimDTO1>().ReverseMap();
 
-
             CreateMap<Aftesi, AftesiDTO>().ReverseMap();
             CreateMap<Aftesi, AftesiPostDTO>().ReverseMap();
 
             CreateMap<UserAftesi, UserAftesiPostDTO>().ReverseMap();
             CreateMap<UserAftesi, UserAftesiDTO>().ReverseMap();
-
 
             CreateMap<UserProjekt, UserProjekt1DTO>().ReverseMap();
             CreateMap<UserEdukim, UserEdukimDTO1>().ReverseMap();
@@ -76,7 +75,8 @@ namespace Domain.Mappings
             CreateMap<UserPervojePune, UserPervojePuneDTO>().ReverseMap();
             CreateMap<DetajeUser, DetajeUserDTO>().ReverseMap();
             //CreateMap<DokumentaDetajeUser, DokumentaDetajeUserDTO>().ReverseMap();
-            CreateMap<PervojePune, PervojePuneDTO1>().ReverseMap();
+            CreateMap<PervojePune, PervojePuneDTO1>()
+                .ReverseMap();
             CreateMap<AppUser, UserDTO1>().ReverseMap();
 
             CreateMap<Leje, LejeDTOwithUser>().ReverseMap();
@@ -88,13 +88,10 @@ namespace Domain.Mappings
             CreateMap<UserPervojePune, UserPervojePunePutDTO>().ReverseMap();
             CreateMap<UserProjekt, UserProjektPutDTO>().ReverseMap();
 
-
-
             CreateMap<UserRoli, UserRoleDTO>().ReverseMap();
             CreateMap<RegisterDTO, AppUser>().ReverseMap();
             CreateMap<PostPutPPDTO, PervojePune>().ReverseMap();
             CreateMap<PostPutRoleDTO, Roli>().ReverseMap();
-
 
             CreateMap<UserEdukimDTOX, UserEdukim>().ReverseMap();
             CreateMap<UserAftesiDTOX, UserAftesi>().ReverseMap();
@@ -102,12 +99,8 @@ namespace Domain.Mappings
             CreateMap<UserRoliDTOX, UserRoli>().ReverseMap();
             CreateMap<UserProjektDTOX, UserProjekt>().ReverseMap();
             CreateMap<UserPervojePuneDTOX, UserPervojePune>().ReverseMap();
-
-
         }
 
         #endregion
-
-
     }
 }

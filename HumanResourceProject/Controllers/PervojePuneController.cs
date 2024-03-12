@@ -6,12 +6,10 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace HumanResourceProject.Controllers
 {
-
     [ApiController]
     [Route("api/[controller]")]
     public class PervojePuneController : ControllerBase
     {
-
         private readonly IPervojePuneDomain _pervojePuneDomain;
 
         public PervojePuneController(IPervojePuneDomain pervojePuneDomain)

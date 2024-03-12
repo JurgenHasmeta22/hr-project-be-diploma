@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
-using System.Linq.Expressions;
-
 
 namespace DAL.Contracts
 {
-    public interface IRepository<TEntity, TKey> where TEntity : class
+    public interface IRepository<TEntity, TKey>
+        where TEntity : class
     {
         TEntity GetById(TKey id);
         IEnumerable<TEntity> GetAll();
@@ -25,7 +25,6 @@ namespace DAL.Contracts
         bool IsDetached(TEntity entity);
         void Detach(TEntity entity);
         void PersistChangesToTrackedEntities();
-
 
         //  IEnumerable<TEntity> GetPaginatedData(int page, int pageSize, string sortField, string sortOrder, string searchString, string searchStringUpon);
     }

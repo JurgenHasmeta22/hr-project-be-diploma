@@ -1,9 +1,9 @@
-﻿using Entities.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Entities.Models;
 
 namespace DTO.UserDTO
 {
@@ -14,6 +14,5 @@ namespace DTO.UserDTO
         public Guid UserId { get; set; }
         public Guid ProjektId { get; set; }
         public virtual Projekt1DTO Projekt { get; set; } = null!;
-
     }
 }

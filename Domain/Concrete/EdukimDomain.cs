@@ -1,4 +1,9 @@
-﻿using AutoMapper;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using AutoMapper;
 using DAL.Contracts;
 using DAL.UoW;
 using Domain.Contracts;
@@ -7,20 +12,13 @@ using DTO.UserDTO;
 using Entities.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.JsonPatch;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Domain.Concrete
 {
     public class EdukimDomain : DomainBase, IEdukimDomain
-
     {
-        public EdukimDomain(IUnitOfWork unitOfWork, IMapper mapper, IHttpContextAccessor httpContextAccessor) : base(unitOfWork, mapper, httpContextAccessor)
-        {
-        }
+        public EdukimDomain(IUnitOfWork unitOfWork, IMapper mapper, IHttpContextAccessor httpContextAccessor)
+            : base(unitOfWork, mapper, httpContextAccessor) { }
 
         private IEdukimRepository EdukimRepository => _unitOfWork.GetRepository<IEdukimRepository>();
 
@@ -43,24 +41,18 @@ namespace Domain.Concrete
                     throw new Exception();
                 EdukimRepository.Remove(EduId);
                 _unitOfWork.Save();
-
             }
-
             catch (Exception)
             {
                 throw;
             }
         }
 
-
-
         public EdukimDTO GetEdukimById(Guid EduId)
         {
             var edukim = EdukimRepository.GetById(EduId);
             return _mapper.Map<EdukimDTO>(edukim);
         }
-
-
 
         public void PutEdukim(Guid EduId, EdukimPostDTO edukim)
         {

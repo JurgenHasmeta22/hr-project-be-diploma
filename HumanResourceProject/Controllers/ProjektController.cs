@@ -3,10 +3,8 @@ using DTO.UserDTO;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 
-
 namespace HumanResourceProject.Controllers
 {
-
     [ApiController]
     [Route("[controller]")]
     public class ProjektController : ControllerBase
@@ -16,10 +14,7 @@ namespace HumanResourceProject.Controllers
         public ProjektController(IProjektDomain projektDomain)
         {
             _projektDomain = projektDomain;
-
-
         }
-
 
         [HttpGet]
         [Route("getAllProjects")]
@@ -50,10 +45,8 @@ namespace HumanResourceProject.Controllers
         }
 
         [HttpPost]
-
         public IActionResult CreateProject([FromBody] ProjektPostDTO projekt)
         {
-
             try
             {
                 if (!ModelState.IsValid)
@@ -67,23 +60,17 @@ namespace HumanResourceProject.Controllers
                 var createdProject = _projektDomain.AddProject(projekt);
                 return Ok(createdProject);
                 // return CreatedAtRoute("", new { id = createdProject.ProjektId,emri = createdProject.EmriProjekt,pershkrimi = createdProject.PershkrimProjekt }, createdProject);
-
             }
-
             catch (Exception ex)
             {
                 return StatusCode(500, ex);
             }
-
         }
-
 
         [HttpDelete]
         [Route("Delete/{ProjektId}")]
         public IActionResult DeleteProject(Guid ProjektId)
         {
-
-
             try
             {
                 if (!ModelState.IsValid)
@@ -92,23 +79,17 @@ namespace HumanResourceProject.Controllers
                 _projektDomain.DeleteProject(ProjektId);
 
                 return NoContent();
-
             }
-
             catch (Exception ex)
             {
                 return NotFound(ex);
             }
-
-
-
         }
 
         [HttpPut]
         [Route("Put/{ProjektId}")]
         public IActionResult UpdateProject(Guid ProjektId, ProjektPostDTO projekt)
         {
-
             try
             {
                 if (!ModelState.IsValid)
@@ -116,21 +97,15 @@ namespace HumanResourceProject.Controllers
                     return BadRequest();
                 }
 
-
                 _projektDomain.PutProject(ProjektId, projekt);
 
                 return NoContent();
-
             }
-
             catch (Exception ex)
             {
                 return StatusCode(500, ex);
             }
-
         }
-
-
 
         [HttpGet]
         [Route("GetById/{ProjektId}")]
@@ -147,7 +122,6 @@ namespace HumanResourceProject.Controllers
 
                 return NotFound();
             }
-
             catch (Exception ex)
             {
                 throw;
@@ -158,7 +132,6 @@ namespace HumanResourceProject.Controllers
         [Route("Patch/{ProjektId}")]
         public IActionResult UpdateProject(Guid ProjektId, JsonPatchDocument patchDoc)
         {
-
             try
             {
                 if (!ModelState.IsValid)
@@ -166,23 +139,14 @@ namespace HumanResourceProject.Controllers
                     return BadRequest();
                 }
 
-
                 _projektDomain.PatchProject(ProjektId, patchDoc);
 
                 return NoContent();
-
             }
-
             catch (Exception ex)
             {
                 return StatusCode(500, ex);
             }
-
         }
-
-
     }
-
-
 }
-

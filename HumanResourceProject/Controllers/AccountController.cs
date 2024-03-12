@@ -4,14 +4,12 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace HumanResourceProject.Controllers
 {
-
     [ApiController]
     [Route("api/[controller]")]
-
     public class AccountController : ControllerBase
     {
-
         private readonly IAccountDomain _accountDomain;
+
         public AccountController(IAccountDomain accountDomain)
         {
             _accountDomain = accountDomain;
@@ -26,6 +24,7 @@ namespace HumanResourceProject.Controllers
                 {
                     return BadRequest();
                 }
+
                 var user = _accountDomain.Register(registerDTO);
 
                 if (user != null)

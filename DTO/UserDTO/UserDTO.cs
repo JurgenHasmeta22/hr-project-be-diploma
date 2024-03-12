@@ -1,11 +1,11 @@
-﻿using DTO.CertifikateDTO;
-using DTO.EdukimDTO;
-using Entities.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DTO.CertifikateDTO;
+using DTO.EdukimDTO;
+using Entities.Models;
 
 namespace DTO.UserDTO
 {
@@ -29,7 +29,5 @@ namespace DTO.UserDTO
         public virtual ICollection<UserPervojePuneDTO> UserPervojePunes { get; set; } = null!;
         public virtual ICollection<UserProjektDTO> UserProjekts { get; set; } = null!;
         public virtual ICollection<UserRoliDTO> UserRolis { get; set; } = null!;
-
-
     }
 }

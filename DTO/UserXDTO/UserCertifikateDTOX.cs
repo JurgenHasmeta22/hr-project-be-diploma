@@ -10,6 +10,5 @@ namespace UserXDTO
         public Guid UserId { get; set; }
         public Guid CertId { get; set; }
         public byte[]? DokumentCertifikate { get; set; }
-
     }
 }

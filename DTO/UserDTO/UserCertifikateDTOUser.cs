@@ -1,12 +1,12 @@
-﻿using Microsoft.AspNetCore.Http;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Entities.Models;
-using DTO.UserDTO;
 using DTO.CertifikateDTO;
+using DTO.UserDTO;
+using Entities.Models;
+using Microsoft.AspNetCore.Http;
 
 namespace DTO.UserDTO
 {
@@ -22,4 +22,3 @@ namespace DTO.UserDTO
         public virtual CertifikateDTO1 Cert { get; set; } = null!;
     }
 }
-

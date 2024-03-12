@@ -18,6 +18,5 @@ namespace DTO.UserDTO
         public Guid UserId { get; set; }
 
         public virtual PervojePuneDTO1 Pp { get; set; } = null!;
-
     }
 }

@@ -1,4 +1,9 @@
-﻿using AutoMapper;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using AutoMapper;
 using DAL.Contracts;
 using DAL.UoW;
 using Domain.Contracts;
@@ -7,19 +12,13 @@ using DTO.UserDTO;
 using Entities.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.JsonPatch;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Domain.Concrete
 {
     public class CertifikateDomain : DomainBase, ICertifikateDomain
     {
-        public CertifikateDomain(IUnitOfWork unitOfWork, IMapper mapper, IHttpContextAccessor httpContextAccessor) : base(unitOfWork, mapper, httpContextAccessor)
-        {
-        }
+        public CertifikateDomain(IUnitOfWork unitOfWork, IMapper mapper, IHttpContextAccessor httpContextAccessor)
+            : base(unitOfWork, mapper, httpContextAccessor) { }
 
         private ICertifikateRepository certifikateRepository => _unitOfWork.GetRepository<ICertifikateRepository>();
 
@@ -42,27 +41,18 @@ namespace Domain.Concrete
                     throw new Exception();
                 certifikateRepository.Remove(CertId);
                 _unitOfWork.Save();
-
             }
-
             catch (Exception)
             {
                 throw;
             }
         }
 
-
-
-
-
-
         public CertifikateDTO GetCertifikateById(Guid CertId)
         {
             var certifikates = certifikateRepository.GetById(CertId);
             return _mapper.Map<CertifikateDTO>(certifikates);
         }
-
-
 
         public void PutCertifikate(Guid CertId, CertifikatePostDTO certifikate)
         {
@@ -80,12 +70,9 @@ namespace Domain.Concrete
         {
             IEnumerable<Certifikate> certifikates = certifikateRepository.GetAll();
 
-
             var result = _mapper.Map<IList<CertifikateDTO1>>(certifikates);
 
             return result;
         }
-
-
     }
 }

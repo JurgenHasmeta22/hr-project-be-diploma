@@ -1,5 +1,4 @@
-﻿
-using Domain.Concrete;
+﻿using Domain.Concrete;
 using Domain.Contracts;
 using DTO.EdukimDTO;
 using Entities.Models;
@@ -15,14 +14,10 @@ namespace HumanResourceProject.Controllers
         //private readonly IEdukimDomain edukimDomain;
         private readonly IEdukimDomain _EdukimDomain;
 
-
         public EdukimController(IEdukimDomain edukimDomain)
         {
             _EdukimDomain = edukimDomain;
-
-
         }
-
 
         [HttpGet]
         [Route("GetAllEdukim")]
@@ -52,10 +47,8 @@ namespace HumanResourceProject.Controllers
         }
 
         [HttpPost]
-
         public IActionResult CreateEdukim(EdukimPostDTO edukim)
         {
-
             try
             {
                 if (!ModelState.IsValid)
@@ -68,20 +61,12 @@ namespace HumanResourceProject.Controllers
 
                 var CreateEdukim = _EdukimDomain.AddEdukim(edukim);
                 return Ok(CreateEdukim);
-
-
-
             }
-
             catch (Exception ex)
             {
                 return StatusCode(500, ex);
             }
-
         }
-
-
-
 
         [HttpGet]
         [Route("{EduId}")]
@@ -99,14 +84,11 @@ namespace HumanResourceProject.Controllers
 
                 return NotFound();
             }
-
             catch (Exception)
             {
                 throw;
             }
         }
-
-
 
         [HttpDelete]
         [Route("{EduId}")]
@@ -118,24 +100,17 @@ namespace HumanResourceProject.Controllers
                     return BadRequest();
                 _EdukimDomain.DeleteEdukim(EduId);
                 return NoContent();
-
-
             }
             catch (Exception)
             {
                 return NotFound();
             }
-
-
-
-
         }
 
         [HttpPut]
         [Route("{EduId}")]
         public IActionResult UpdateEdukim(Guid EduId, EdukimPostDTO edukim)
         {
-
             try
             {
                 if (!ModelState.IsValid)
@@ -143,24 +118,20 @@ namespace HumanResourceProject.Controllers
                     return BadRequest();
                 }
 
-
                 _EdukimDomain.PutEdukim(EduId, edukim);
 
                 return NoContent();
-
             }
-
             catch (Exception ex)
             {
                 return StatusCode(500, ex);
             }
-
         }
 
         //[HttpPatch]
         //[Route("{EduId}")]
         //public IActionResult UpdateEdukim(Guid EduId, JsonPatchDocument patchDoc)
-        //{ 
+        //{
 
         //    try
         //    {
@@ -182,9 +153,5 @@ namespace HumanResourceProject.Controllers
         //    }
 
         //}
-
-
-
-
     }
 }
