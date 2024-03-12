@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Domain.Contracts
 {
-    public  interface ICertifikateDomain
+    public interface ICertifikateDomain
     {
         CertifikateDTO AddCertifikate(CertifikatePostDTO certifikate);
         IList<CertifikateDTO1> getAllCertifikate();
@@ -17,6 +17,6 @@ namespace Domain.Contracts
 
         void PutCertifikate(Guid CertId, CertifikatePostDTO certifikate);
         void DeleteCertifikate(Guid CertId);
-        
+
     }
 }

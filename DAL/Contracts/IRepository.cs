@@ -26,7 +26,7 @@ namespace DAL.Contracts
         void Detach(TEntity entity);
         void PersistChangesToTrackedEntities();
 
-       
+
         //  IEnumerable<TEntity> GetPaginatedData(int page, int pageSize, string sortField, string sortOrder, string searchString, string searchStringUpon);
     }
 }

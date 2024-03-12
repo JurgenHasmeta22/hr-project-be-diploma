@@ -12,6 +12,6 @@ namespace DTO.UserDTO
         public Guid ProjektId { get; set; }
         public string EmriProjekt { get; set; } = null!;
         public string PershkrimProjekt { get; set; } = null!;
-       
+
     }
 }

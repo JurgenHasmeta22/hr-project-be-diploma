@@ -78,7 +78,7 @@ namespace Domain.Mappings
             //CreateMap<DokumentaDetajeUser, DokumentaDetajeUserDTO>().ReverseMap();
             CreateMap<PervojePune, PervojePuneDTO1>().ReverseMap();
             CreateMap<AppUser, UserDTO1>().ReverseMap();
-            
+
             CreateMap<Leje, LejeDTOwithUser>().ReverseMap();
 
             CreateMap<UserAftesi, UserAftesiPutDTO>().ReverseMap();

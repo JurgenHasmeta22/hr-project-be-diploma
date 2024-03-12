@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Domain.Contracts
 {
-    public  interface IUserDokumentDomain
+    public interface IUserDokumentDomain
     {
         void AddUserDokument(Guid UserId, Guid Duid, DokumentPostDTO dokument);
 

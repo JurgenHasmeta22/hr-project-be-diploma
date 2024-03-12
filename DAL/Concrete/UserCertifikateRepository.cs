@@ -15,7 +15,7 @@ namespace DAL.Concrete
         {
         }
 
-        public UserCertifikate GetByUserIdAndCertifikateId(Guid userId, Guid certId) 
+        public UserCertifikate GetByUserIdAndCertifikateId(Guid userId, Guid certId)
         {
             return context.Where(x => x.UserId == userId && x.CertId == certId).FirstOrDefault();
         }

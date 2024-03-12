@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace DAL.Contracts
 {
-    public  interface IEdukimRepository:IRepository<Edukim,Guid>
+    public interface IEdukimRepository : IRepository<Edukim, Guid>
 
     {
-        Edukim GetById (Guid id);
+        Edukim GetById(Guid id);
     }
 }

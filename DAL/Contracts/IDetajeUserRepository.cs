@@ -9,6 +9,6 @@ namespace DAL.Contracts
 {
     public interface IDetajeUserRepository : IRepository<DetajeUser, Guid>
     {
- 
+
     }
 }

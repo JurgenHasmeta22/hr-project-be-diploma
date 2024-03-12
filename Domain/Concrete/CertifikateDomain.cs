@@ -15,13 +15,13 @@ using System.Threading.Tasks;
 
 namespace Domain.Concrete
 {
-    public  class CertifikateDomain : DomainBase, ICertifikateDomain
+    public class CertifikateDomain : DomainBase, ICertifikateDomain
     {
         public CertifikateDomain(IUnitOfWork unitOfWork, IMapper mapper, IHttpContextAccessor httpContextAccessor) : base(unitOfWork, mapper, httpContextAccessor)
         {
         }
 
-        private ICertifikateRepository  certifikateRepository => _unitOfWork.GetRepository<ICertifikateRepository>();
+        private ICertifikateRepository certifikateRepository => _unitOfWork.GetRepository<ICertifikateRepository>();
 
         public CertifikateDTO AddCertifikate(CertifikatePostDTO certifikate)
         {
@@ -45,16 +45,16 @@ namespace Domain.Concrete
 
             }
 
-            catch (Exception )
+            catch (Exception)
             {
-                throw ;
+                throw;
             }
         }
-    
 
-       
 
-       
+
+
+
 
         public CertifikateDTO GetCertifikateById(Guid CertId)
         {
@@ -62,7 +62,7 @@ namespace Domain.Concrete
             return _mapper.Map<CertifikateDTO>(certifikates);
         }
 
-       
+
 
         public void PutCertifikate(Guid CertId, CertifikatePostDTO certifikate)
         {
@@ -76,16 +76,16 @@ namespace Domain.Concrete
             _unitOfWork.Save();
         }
 
-        public  IList<CertifikateDTO1> getAllCertifikate()
+        public IList<CertifikateDTO1> getAllCertifikate()
         {
             IEnumerable<Certifikate> certifikates = certifikateRepository.GetAll();
 
-            
-            var result =_mapper.Map<IList<CertifikateDTO1>>(certifikates);
+
+            var result = _mapper.Map<IList<CertifikateDTO1>>(certifikates);
 
             return result;
         }
 
-       
+
     }
 }

@@ -9,12 +9,12 @@ using Microsoft.AspNetCore.JsonPatch;
 
 namespace Domain.Contracts
 {
-    public interface ILejeDomain 
+    public interface ILejeDomain
     {
-        
+
 
         IList<LejeDTOwithUser> getAllLeje();
 
-        
+
     }
 }

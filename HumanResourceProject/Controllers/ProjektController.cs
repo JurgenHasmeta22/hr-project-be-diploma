@@ -16,7 +16,7 @@ namespace HumanResourceProject.Controllers
         public ProjektController(IProjektDomain projektDomain)
         {
             _projektDomain = projektDomain;
-           
+
 
         }
 
@@ -50,7 +50,7 @@ namespace HumanResourceProject.Controllers
         }
 
         [HttpPost]
-       
+
         public IActionResult CreateProject([FromBody] ProjektPostDTO projekt)
         {
 
@@ -66,15 +66,15 @@ namespace HumanResourceProject.Controllers
 
                 var createdProject = _projektDomain.AddProject(projekt);
                 return Ok(createdProject);
-               // return CreatedAtRoute("", new { id = createdProject.ProjektId,emri = createdProject.EmriProjekt,pershkrimi = createdProject.PershkrimProjekt }, createdProject);
+                // return CreatedAtRoute("", new { id = createdProject.ProjektId,emri = createdProject.EmriProjekt,pershkrimi = createdProject.PershkrimProjekt }, createdProject);
 
             }
-            
+
             catch (Exception ex)
             {
                 return StatusCode(500, ex);
             }
-           
+
         }
 
 
@@ -99,38 +99,38 @@ namespace HumanResourceProject.Controllers
             {
                 return NotFound(ex);
             }
-            
+
 
 
         }
 
-         [HttpPut]
-         [Route("Put/{ProjektId}")]
-        public IActionResult UpdateProject(Guid ProjektId,ProjektPostDTO projekt)
-          {
+        [HttpPut]
+        [Route("Put/{ProjektId}")]
+        public IActionResult UpdateProject(Guid ProjektId, ProjektPostDTO projekt)
+        {
 
-              try
-              {
-                  if (!ModelState.IsValid)
-                  {
-                      return BadRequest();
-                  }
+            try
+            {
+                if (!ModelState.IsValid)
+                {
+                    return BadRequest();
+                }
 
-                               
-                _projektDomain.PutProject(ProjektId,projekt);
 
-                  return NoContent();
+                _projektDomain.PutProject(ProjektId, projekt);
 
-              }
+                return NoContent();
 
-              catch (Exception ex)
-              {
-                  return StatusCode(500, ex);
-              }
+            }
 
-          }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex);
+            }
 
-          
+        }
+
+
 
         [HttpGet]
         [Route("GetById/{ProjektId}")]
@@ -150,7 +150,7 @@ namespace HumanResourceProject.Controllers
 
             catch (Exception ex)
             {
-                throw ex;
+                throw;
             }
         }
 
@@ -179,7 +179,7 @@ namespace HumanResourceProject.Controllers
             }
 
         }
-        
+
 
     }
 

@@ -15,17 +15,17 @@ namespace DAL.Concrete
         public ProjektRepository(HRDBContext dbContext) : base(dbContext)
         {
         }
-        public  Projekt GetById(Guid id)
+        public Projekt GetById(Guid id)
         {
             var project = context.Include(x => x.UserProjekts).ThenInclude(x => x.User).Where(x => x.ProjektId == id).FirstOrDefault();
             return project;
         }
-        
 
-
-    }
 
 
     }
+
+
+}
 
 

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DTO.DokumentDto
 {
-    public  class DokumentDTO
+    public class DokumentDTO
     {
         public Guid DokumentId { get; set; }
         public Guid Duid { get; set; }

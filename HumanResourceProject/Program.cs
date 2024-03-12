@@ -27,8 +27,10 @@ builder.Services.AddControllers().AddNewtonsoftJson();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 
-builder.Services.AddSwaggerGen(options => {
-    options.AddSecurityDefinition("JWT Bearer", new OpenApiSecurityScheme {
+builder.Services.AddSwaggerGen(options =>
+{
+    options.AddSecurityDefinition("JWT Bearer", new OpenApiSecurityScheme
+    {
         Description = "Authorization scheme with JWT tokens.",
         In = ParameterLocation.Header,
         Name = "Authorization",

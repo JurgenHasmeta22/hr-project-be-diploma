@@ -11,8 +11,8 @@ namespace DTO.EdukimDTO
 
         public Guid EduId { get; set; }
         public string EduName { get; set; } = null!;
-        public virtual ICollection<UserEdukimDTO1>UserEdukims { get; set; } =null!;
-       
+        public virtual ICollection<UserEdukimDTO1> UserEdukims { get; set; } = null!;
+
 
     }
 }

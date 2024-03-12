@@ -13,7 +13,7 @@ namespace DTO.UserDTO
         public DateTime DataFillim { get; set; }
         public DateTime DataMbarim { get; set; }
         public string TipiLeje { get; set; } = null!;
-       
+
         public Guid UserId { get; set; }
         public int? Aprovuar { get; set; }
 

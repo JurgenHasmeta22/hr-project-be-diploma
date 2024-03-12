@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace DAL.Contracts
 {
-    public interface IAftesiRepository : IRepository <Aftesi, Guid>
+    public interface IAftesiRepository : IRepository<Aftesi, Guid>
     {
         Aftesi GetById(Guid id);
     }
-    
+
 }

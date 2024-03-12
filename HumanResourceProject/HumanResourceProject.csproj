@@ -6,6 +6,10 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <PropertyGroup>
+    <MSBuildWarningsVerbosity>diagnostic</MSBuildWarningsVerbosity>
+  </PropertyGroup>
+
   <ItemGroup>
     <Compile Remove="Upload\**" />
     <Content Remove="Upload\**" />

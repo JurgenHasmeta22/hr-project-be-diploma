@@ -16,14 +16,15 @@ namespace DAL.Concrete
         }
         public UserAftesi GetByUserIdAndAftesiId(Guid userId, Guid aftesiId)
         {
-          return context.Where(x => x.UserId == userId && x.AftesiId == aftesiId).FirstOrDefault();
+            return context.Where(x => x.UserId == userId && x.AftesiId == aftesiId).FirstOrDefault();
         }
- }}
+    }
+}
 
 
 
 
-    
+
 
 
 

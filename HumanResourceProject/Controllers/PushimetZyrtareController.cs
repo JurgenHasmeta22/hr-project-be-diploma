@@ -31,7 +31,7 @@ namespace HumanResourceProject.Controllers
                     return BadRequest();
                 }
 
-                var pushimet  = _pushimetZyrtareDomain.getAllPushime();
+                var pushimet = _pushimetZyrtareDomain.getAllPushime();
 
                 if (pushimet != null)
                 {
@@ -65,7 +65,7 @@ namespace HumanResourceProject.Controllers
 
                 var createdPushim = _pushimetZyrtareDomain.AddPushim(pushim);
                 return Ok(createdPushim);
-                
+
 
             }
 
@@ -102,7 +102,7 @@ namespace HumanResourceProject.Controllers
 
 
         }
-        
+
         [HttpPut]
         [Route("{PushimId}")]
         public IActionResult UpdatePushim(Guid PushimId, PushimePostDTO pushim)
@@ -116,7 +116,7 @@ namespace HumanResourceProject.Controllers
                 }
 
 
-                var pushimi= _pushimetZyrtareDomain.PutPushim(PushimId, pushim);
+                var pushimi = _pushimetZyrtareDomain.PutPushim(PushimId, pushim);
 
                 return Ok(pushimi);
 
@@ -128,8 +128,8 @@ namespace HumanResourceProject.Controllers
             }
 
         }
-        
-        
+
+
 
         [HttpGet]
         [Route("{PushimId}")]
@@ -146,11 +146,11 @@ namespace HumanResourceProject.Controllers
 
             catch (Exception ex)
             {
-                throw ex;
+                throw;
             }
         }
-        
-        
+
+
 
 
 

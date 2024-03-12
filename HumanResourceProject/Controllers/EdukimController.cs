@@ -100,9 +100,9 @@ namespace HumanResourceProject.Controllers
                 return NotFound();
             }
 
-            catch (Exception )
+            catch (Exception)
             {
-                throw ;
+                throw;
             }
         }
 
@@ -121,7 +121,7 @@ namespace HumanResourceProject.Controllers
 
 
             }
-            catch (Exception )
+            catch (Exception)
             {
                 return NotFound();
             }

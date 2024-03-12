@@ -26,16 +26,16 @@ namespace Domain.Concrete
 
             var pushimEntity = _mapper.Map<PushimetZyrtare>(pushim);
             pushimEntity.PushimId = Guid.NewGuid();
-            
+
             var pushimfinal = pushimetRepository.Add(pushimEntity);
             _unitOfWork.Save();
             return _mapper.Map<PushimeDTO>(pushimfinal);
-            
+
         }
 
         public IList<PushimeDTO> getAllPushime()
         {
-           var pushimet=  pushimetRepository.GetAll();
+            var pushimet = pushimetRepository.GetAll();
             return _mapper.Map<IList<PushimeDTO>>(pushimet);
         }
 

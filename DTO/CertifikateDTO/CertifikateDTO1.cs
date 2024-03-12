@@ -11,6 +11,6 @@ namespace DTO.CertifikateDTO
         public Guid CertId { get; set; }
         public string CertEmri { get; set; } = null!;
         public string CertPershkrim { get; set; } = null!;
-        
+
     }
 }

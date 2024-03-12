@@ -15,6 +15,6 @@ namespace DTO.UserDTO
         public string UserEmail { get; set; } = null!;
         public int BalancaLeje { get; set; }
         public bool UserIsActive { get; set; }
-        
+
     }
 }

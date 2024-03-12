@@ -15,7 +15,7 @@ namespace Domain.Contracts
     public interface IUserDomain
     {
         IList<UserDTO1> GetAllUsers();
-     
+
         UserDTO GetUserById(Guid id);
         UserDTO PutUser(Guid UserId, UserPostDTO user);
         void AddUserProject(Guid UserId, Guid ProjektId, UserProjektPostDTO userprojekt);

@@ -52,74 +52,74 @@ namespace Domain.Concrete
 
             return test;
         }
-     
+
 
 
         public UserDTO GetUserById(Guid id)
-            {
+        {
             AppUser user = userRepository.GetById(id);
 
-             return _mapper.Map<UserDTO>(user);
-            }
-          public UserDTO PutUser(Guid UserId, UserPostDTO user)
-           {
-          var userentity = userRepository.GetById(UserId);
+            return _mapper.Map<UserDTO>(user);
+        }
+        public UserDTO PutUser(Guid UserId, UserPostDTO user)
+        {
+            var userentity = userRepository.GetById(UserId);
 
-              if (userentity is null)
-               throw new Exception();
-             userentity = _mapper.Map<UserPostDTO, AppUser>(user, userentity);
+            if (userentity is null)
+                throw new Exception();
+            userentity = _mapper.Map<UserPostDTO, AppUser>(user, userentity);
 
-               userRepository.Update(userentity);
-              _unitOfWork.Save();
-               return _mapper.Map<UserDTO>(userentity);
-              }
-            public void AddUserProject(Guid UserId, Guid ProjektId, UserProjektPostDTO userprojekt)
-             {
-              var user = userRepository.GetById(UserId);
-              if (user == null)
-               throw new ArgumentException("User does not exist");
+            userRepository.Update(userentity);
+            _unitOfWork.Save();
+            return _mapper.Map<UserDTO>(userentity);
+        }
+        public void AddUserProject(Guid UserId, Guid ProjektId, UserProjektPostDTO userprojekt)
+        {
+            var user = userRepository.GetById(UserId);
+            if (user == null)
+                throw new ArgumentException("User does not exist");
 
-              if (user.UserIsActive == false)
-              throw new ArgumentException("User is deactivated");
+            if (user.UserIsActive == false)
+                throw new ArgumentException("User is deactivated");
 
-               if (projektRepository.GetById(ProjektId) == null)
-             throw new ArgumentException("Project does not exist");
+            if (projektRepository.GetById(ProjektId) == null)
+                throw new ArgumentException("Project does not exist");
 
-             var userprojektentity = _mapper.Map<UserProjekt>(userprojekt);
-              userprojektentity.UserId = UserId;
-              userprojektentity.ProjektId = ProjektId;
+            var userprojektentity = _mapper.Map<UserProjekt>(userprojekt);
+            userprojektentity.UserId = UserId;
+            userprojektentity.ProjektId = ProjektId;
 
 
-               if (user.UserProjekts.Contains(userprojektentity) == true)
-               throw new ArgumentException("User already has project");
+            if (user.UserProjekts.Contains(userprojektentity) == true)
+                throw new ArgumentException("User already has project");
 
-              user.UserProjekts.Add(userprojektentity);
-               _unitOfWork.Save();
-               }
+            user.UserProjekts.Add(userprojektentity);
+            _unitOfWork.Save();
+        }
 
-             public void DeleteUserProject(Guid UserId, Guid ProjektId)
-              {
-               var user = userRepository.GetById(UserId);
-               var userprojects = user.UserProjekts;
-              foreach (var userproject in userprojects)
-                {
-                 if (userproject.UserId == UserId && userproject.ProjektId == ProjektId)
+        public void DeleteUserProject(Guid UserId, Guid ProjektId)
+        {
+            var user = userRepository.GetById(UserId);
+            var userprojects = user.UserProjekts;
+            foreach (var userproject in userprojects)
+            {
+                if (userproject.UserId == UserId && userproject.ProjektId == ProjektId)
                     userprojects.Remove(userproject);
 
-                 }
-                    _unitOfWork.Save();
-                }
+            }
+            _unitOfWork.Save();
+        }
 
-         public bool KerkoLeje(Guid UserId, LejePostDTO leje)
-          {
+        public bool KerkoLeje(Guid UserId, LejePostDTO leje)
+        {
             //UpdateBalance(UserId);
             var user = userRepository.GetById(UserId);
             int balanca = user.BalancaLeje;
             int diteLeje = 0;
-            foreach(var leja in user.Lejes)
+            foreach (var leja in user.Lejes)
             {
-                if(leja.Aprovuar==2)
-                diteLeje += KontrolloLejen(_mapper.Map<Leje>(leja));
+                if (leja.Aprovuar == 2)
+                    diteLeje += KontrolloLejen(_mapper.Map<Leje>(leja));
             }
             diteLeje += KontrolloLejen(_mapper.Map<Leje>(leje));
 
@@ -127,64 +127,64 @@ namespace Domain.Concrete
 
             if (diteLeje <= balanca)
             {
-               var lejeEntity = _mapper.Map<Leje>(leje);
-                 lejeEntity.LejeId = Guid.NewGuid();
-                  lejeEntity.UserId = UserId;
-                   lejeEntity.Aprovuar = 2;
-                  //lejeEntity.DokumentLeje = _photoDomain.AddPhoto(leje.DokumentLeje);
+                var lejeEntity = _mapper.Map<Leje>(leje);
+                lejeEntity.LejeId = Guid.NewGuid();
+                lejeEntity.UserId = UserId;
+                lejeEntity.Aprovuar = 2;
+                //lejeEntity.DokumentLeje = _photoDomain.AddPhoto(leje.DokumentLeje);
 
-                 var lejeFinal = lejeRepository.Add(lejeEntity);
+                var lejeFinal = lejeRepository.Add(lejeEntity);
 
 
-                    _unitOfWork.Save();
-                      return true;
-                   }
-                  else return false;
-          }
-                 public void DeleteLeje(Guid LejeId)
-{
-    var leje = lejeRepository.GetById(LejeId);
-    if (leje is null)
-        throw new Exception();
-
-    lejeRepository.Remove(LejeId);
-
-    _unitOfWork.Save();
-}
-                public void UpdateLeje(Guid LejeId, LejePostDTO leje)
-{
-    var lejeEntity = lejeRepository.GetById(LejeId);
-
-    if (lejeEntity is null)
-        throw new Exception();
-    lejeEntity = _mapper.Map<LejePostDTO, Leje>(leje, lejeEntity);
-
-    lejeRepository.Update(lejeEntity);
-    _unitOfWork.Save();
-}
-              public void UpdateBalance(Guid userId)
-{
-    var user = userRepository.GetById(userId);
-    IEnumerable<Leje> lejet = user.Lejes;
-
-    var detajet = user.DetajeUsers.First();
-    int count = 0;
-
-    foreach (var x in lejet)
-    {
-        if (x.Aprovuar == 1)
-        {
-            count += KontrolloLejen(x);
-            //count = count + (int)(x.DataMbarim - x.DataFillim).TotalDays;
+                _unitOfWork.Save();
+                return true;
+            }
+            else return false;
         }
-    }
-    if (detajet != null)
-    {
+        public void DeleteLeje(Guid LejeId)
+        {
+            var leje = lejeRepository.GetById(LejeId);
+            if (leje is null)
+                throw new Exception();
+
+            lejeRepository.Remove(LejeId);
+
+            _unitOfWork.Save();
+        }
+        public void UpdateLeje(Guid LejeId, LejePostDTO leje)
+        {
+            var lejeEntity = lejeRepository.GetById(LejeId);
+
+            if (lejeEntity is null)
+                throw new Exception();
+            lejeEntity = _mapper.Map<LejePostDTO, Leje>(leje, lejeEntity);
+
+            lejeRepository.Update(lejeEntity);
+            _unitOfWork.Save();
+        }
+        public void UpdateBalance(Guid userId)
+        {
+            var user = userRepository.GetById(userId);
+            IEnumerable<Leje> lejet = user.Lejes;
+
+            var detajet = user.DetajeUsers.First();
+            int count = 0;
+
+            foreach (var x in lejet)
+            {
+                if (x.Aprovuar == 1)
+                {
+                    count += KontrolloLejen(x);
+                    //count = count + (int)(x.DataMbarim - x.DataFillim).TotalDays;
+                }
+            }
+            if (detajet != null)
+            {
                 int shtimiBalances;
                 double months = Math.Abs((detajet.DataFillim.Month - DateTime.Now.Month) + 12 * (detajet.DataFillim.Year - DateTime.Now.Year));
                 if (months > 12)
                 {
-                    shtimiBalances = (int)Math.Round(months * 1.7) -20;
+                    shtimiBalances = (int)Math.Round(months * 1.7) - 20;
                     user.BalancaLeje += shtimiBalances;
                     user.BalancaLeje -= count;
                     userRepository.Update(user);
@@ -196,58 +196,58 @@ namespace Domain.Concrete
                     userRepository.Update(user);
                     _unitOfWork.Save();
                 }
-    }
+            }
 
 
-}
+        }
         public int KontrolloLejen(Leje leje)
         {
             int count = 0;
             foreach (DateTime day in EachDay(leje.DataFillim, leje.DataMbarim.AddDays(-1)))
-          {
-        if (pushimeRepository.GetByDate(day) == null)
+            {
+                if (pushimeRepository.GetByDate(day) == null)
+                {
+                    if ((day.DayOfWeek == DayOfWeek.Saturday) || (day.DayOfWeek == DayOfWeek.Sunday))
+                        continue;
+                    else
+                        ++count;
+                }
+
+                else
+                {
+
+                }
+            }
+            return count;
+        }
+        public IEnumerable<DateTime> EachDay(DateTime from, DateTime thru)
         {
-            if ((day.DayOfWeek == DayOfWeek.Saturday) || (day.DayOfWeek == DayOfWeek.Sunday))
-                continue;
-            else
-                ++count;
+            for (var day = from.Date; day.Date <= thru.Date; day = day.AddDays(1))
+                yield return day;
         }
 
-        else
+
+        public void ApproveLeje(Guid LejeId)
         {
-
-        }
-    }
-    return count;
-}
-              public IEnumerable<DateTime> EachDay(DateTime from, DateTime thru)
-       {
-       for (var day = from.Date; day.Date <= thru.Date; day = day.AddDays(1))
-        yield return day;
-}
-
-
-           public void ApproveLeje(Guid LejeId)
-        {
-         var leje = lejeRepository.GetById(LejeId);
+            var leje = lejeRepository.GetById(LejeId);
             leje.Aprovuar = 1;
-           lejeRepository.Update(leje);
+            lejeRepository.Update(leje);
             _unitOfWork.Save();
             UpdateBalance(leje.UserId);
             _unitOfWork.Save();
-}
+        }
 
 
-          public void DisapproveLeje(Guid LejeId)
-{
-        var leje = lejeRepository.GetById(LejeId);
+        public void DisapproveLeje(Guid LejeId)
+        {
+            var leje = lejeRepository.GetById(LejeId);
             leje.Aprovuar = 0;
-    //UpdateBalance(leje.UserId);
+            //UpdateBalance(leje.UserId);
             lejeRepository.Update(leje);
-               _unitOfWork.Save();
-}
+            _unitOfWork.Save();
+        }
 
-        
+
 
 
 
@@ -288,7 +288,7 @@ namespace Domain.Concrete
             _unitOfWork.Save();
         }
 
-        
+
 
         public void DeleteUserCertifikate(Guid UserId, Guid CertId)
         {
@@ -303,7 +303,7 @@ namespace Domain.Concrete
             _unitOfWork.Save();
         }
 
-        public  void  AddUserCertifikate(Guid UserId, Guid CertId, UserCertifikatePostDTO userCertifikate)
+        public void AddUserCertifikate(Guid UserId, Guid CertId, UserCertifikatePostDTO userCertifikate)
         {
             var user = userRepository.GetById(UserId);
             if (user == null)
@@ -325,7 +325,7 @@ namespace Domain.Concrete
 
             user.UserCertifikates.Add(UserCertifikateEntity);
             _unitOfWork.Save();
-        
+
         }
         public void AddUserAftesi(Guid UserId, Guid aftesiId, UserAftesiPostDTO useraftesi)
         {
@@ -372,7 +372,7 @@ namespace Domain.Concrete
             }
             _unitOfWork.Save();
         }
-        public UserPervojePuneDTOX UpdateUserPervojePune(Guid UserId, Guid PPId, UserPervojePunePutDTO ppDTO) 
+        public UserPervojePuneDTOX UpdateUserPervojePune(Guid UserId, Guid PPId, UserPervojePunePutDTO ppDTO)
         {
             var user = userRepository.GetById(UserId);
             if (user == null)
@@ -391,7 +391,7 @@ namespace Domain.Concrete
             _unitOfWork.Save();
             return _mapper.Map<UserPervojePuneDTOX>(userPervojePuneEntity);
         }
-        public UserAftesiDTOX UpdateUserAftesi(Guid UserId, Guid aftesiId, UserAftesiPutDTO aftesiDTO) 
+        public UserAftesiDTOX UpdateUserAftesi(Guid UserId, Guid aftesiId, UserAftesiPutDTO aftesiDTO)
         {
             var user = userRepository.GetById(UserId);
             if (user == null)
@@ -403,14 +403,14 @@ namespace Domain.Concrete
             if (aftesiRepository.GetById(aftesiId) == null)
                 throw new ArgumentException("Aftesi does not exist");
 
-           var userAftesiEntity = userAftesiRepository.GetByUserIdAndAftesiId(UserId,aftesiId);
+            var userAftesiEntity = userAftesiRepository.GetByUserIdAndAftesiId(UserId, aftesiId);
             userAftesiEntity = _mapper.Map<UserAftesiPutDTO, UserAftesi>(aftesiDTO, userAftesiEntity);
-         
+
             userAftesiRepository.Update(userAftesiEntity);
             _unitOfWork.Save();
             return _mapper.Map<UserAftesiDTOX>(userAftesiEntity);
         }
-        public UserCertifikateDTOX UpdateUserCertifikate(Guid UserId, Guid CertId, UserCertifikatePutDTO certDTO) 
+        public UserCertifikateDTOX UpdateUserCertifikate(Guid UserId, Guid CertId, UserCertifikatePutDTO certDTO)
         {
             var user = userRepository.GetById(UserId);
             if (user == null)

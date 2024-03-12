@@ -11,7 +11,7 @@ namespace Domain.Concrete
     {
         public void Register()
         {
-            
+
         }
     }
 }

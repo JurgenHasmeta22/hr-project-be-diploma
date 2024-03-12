@@ -19,7 +19,7 @@ namespace Domain.DI
 
             For<IUserDomain>().Use<UserDomain>();
             For<IProjektDomain>().Use<ProjektDomain>();
-            
+
             For<IEdukimDomain>().Use<EdukimDomain>();
             For<ICertifikateDomain>().Use<CertifikateDomain>();
             For<IAftesiDomain>().Use<AftesiDomain>();
@@ -27,7 +27,7 @@ namespace Domain.DI
             For<ITokenService>().Use<TokenService>();
             For<IRoliDomain>().Use<RoliDomain>();
             For<IPervojePuneDomain>().Use<PervojePuneDomain>();
-          //  For<IUserPervojePuneDomain>().Use<UserPervojePuneDomain>();
+            //  For<IUserPervojePuneDomain>().Use<UserPervojePuneDomain>();
             For<IPushimetZyrtareDomain>().Use<PushimetZyrtareDomain>();
             For<ILejeDomain>().Use<LejeDomain>();
 

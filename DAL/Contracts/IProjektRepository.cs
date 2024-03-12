@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace DAL.Contracts
 {
-    public interface IProjektRepository:IRepository<Projekt, Guid>
+    public interface IProjektRepository : IRepository<Projekt, Guid>
     {
 
-        
+
         Projekt GetById(Guid id);
 
     }

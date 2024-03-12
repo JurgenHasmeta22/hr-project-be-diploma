@@ -8,12 +8,12 @@ using System.Threading.Tasks;
 
 namespace DTO.UserDTO
 {
-    public  class CertifikateDTO
+    public class CertifikateDTO
     {
-        [Required(ErrorMessage="Please Enter Certifikate Id")]
-        [Display(Name ="Certifikate Id")]
+        [Required(ErrorMessage = "Please Enter Certifikate Id")]
+        [Display(Name = "Certifikate Id")]
         public Guid CertId { get; set; }
-        [Display(Name= "Emri i Certifikates")]
+        [Display(Name = "Emri i Certifikates")]
         public string CertEmri { get; set; } = null!;
         [Display(Name = "Pershkrimi i Certifikates")]
         public string CertPershkrim { get; set; } = null!;

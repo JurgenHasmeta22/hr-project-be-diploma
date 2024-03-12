@@ -490,7 +490,7 @@ namespace HumanResourceProject.Controllers
                 return StatusCode(500, ex);
             }
         }
-       [HttpPut]
+        [HttpPut]
         [Route("UpdateUserPervojePune/{UserId},{PPId}")]
         public IActionResult UpdateUserPervojePune([FromRoute] Guid UserId, [FromRoute] Guid PPId, [FromBody] UserPervojePunePutDTO putDTO)
         {
@@ -547,7 +547,7 @@ namespace HumanResourceProject.Controllers
                 return StatusCode(500, ex);
             }
         }
-       [HttpPut]
+        [HttpPut]
         [Route("UpdateUserAftesi/{UserId},{AftesiId}")]
         public IActionResult UpdateUserAftesi([FromRoute] Guid UserId, [FromRoute] Guid AftesiId, [FromBody] UserAftesiPutDTO putDTO)
         {
@@ -566,7 +566,7 @@ namespace HumanResourceProject.Controllers
                 return StatusCode(500, ex);
             }
         }
-       [HttpPut]
+        [HttpPut]
         [Route("UpdateUserProjekt/{UserId},{ProjektId}")]
         public IActionResult UpdateUserProjekt([FromRoute] Guid UserId, [FromRoute] Guid ProjektId, [FromBody] UserProjektPutDTO putDTO)
         {
@@ -605,11 +605,11 @@ namespace HumanResourceProject.Controllers
                 return StatusCode(500, ex);
             }
         }
-       
+
     }
 }
 
 
 
-   
+
 

@@ -117,7 +117,7 @@ namespace HumanResourceProject.Controllers
 
 
             }
-            catch (Exception )
+            catch (Exception)
             {
                 return NotFound();
             }

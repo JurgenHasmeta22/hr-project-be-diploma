@@ -16,10 +16,10 @@ namespace DTO.EdukimDTO
 
         public byte[]? DokumentDiplome { get; set; } = null!;
 
-       
+
         public Guid UserId { get; set; }
         public Guid EduId { get; set; }
 
-        public virtual EdukimDTO1 Edukim  { get; set; } = null!;
+        public virtual EdukimDTO1 Edukim { get; set; } = null!;
     }
 }

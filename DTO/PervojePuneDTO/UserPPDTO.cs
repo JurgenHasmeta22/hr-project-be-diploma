@@ -4,8 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DTO.PervojePuneDTO {
-	public class UserPPDTO {
+namespace DTO.PervojePuneDTO
+{
+    public class UserPPDTO
+    {
         public Guid Ppid { get; set; }
         public Guid UserId { get; set; }
         public DateTime DataFillim { get; set; }

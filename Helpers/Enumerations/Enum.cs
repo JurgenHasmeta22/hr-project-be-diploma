@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Helpers
 {
-   public enum Status
+    public enum Status
     {
         Active = 1,
         Inactive = 2

@@ -1,0 +1,19 @@
+{
+    "style": "dotnet",
+    "files": [
+      "**/*.cs"
+    ],
+    "exclude": [
+      "obj/**/*",
+      "bin/**/*"
+    ],
+    "indentation": "space",
+    "spaceAfterControlFlowStatementKeyword": true,
+    "spaceWithinExpressionParentheses": true,
+    "spaceBetweenEmptyMethodParameterListParentheses": false,
+    "newlineAtEndOfFile": true,
+    "spacesPerIndent": 4,
+    "openBracesOnSameLine": true,
+    "openParenthesesOnSameLine": true,
+    "openSquareBracketsOnSameLine": true
+  }

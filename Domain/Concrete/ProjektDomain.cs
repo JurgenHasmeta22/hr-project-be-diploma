@@ -21,7 +21,7 @@ namespace Domain.Concrete
         }
 
         private IProjektRepository projektRepository => _unitOfWork.GetRepository<IProjektRepository>();
-       
+
         public ProjektDTO AddProject(ProjektPostDTO projekt)
         {
             var projektEntity = _mapper.Map<Projekt>(projekt);
@@ -32,9 +32,9 @@ namespace Domain.Concrete
             var projektToReturn = _mapper.Map<ProjektDTO>(projektFinal);
             _unitOfWork.Save();
             return projektToReturn;
-          
-         
-           
+
+
+
 
 
         }
@@ -61,12 +61,12 @@ namespace Domain.Concrete
         {
             try
             {
-                var project=projektRepository.GetById(ProjektId);
+                var project = projektRepository.GetById(ProjektId);
                 if (project is null)
                     throw new Exception();
                 var userprojects = project.UserProjekts;
-               // var userprojects = userprojektRepository.GetUsersByProjectId(ProjektId);
-                foreach(var userproject in userprojects)
+                // var userprojects = userprojektRepository.GetUsersByProjectId(ProjektId);
+                foreach (var userproject in userprojects)
                 {
                     userprojects.Remove(userproject);
                     //userprojektRepository.DeleteMapped(userproject.UserId,ProjektId);
@@ -79,25 +79,25 @@ namespace Domain.Concrete
 
             catch (Exception ex)
             {
-                throw ex;
+                throw;
             }
 
 
         }
 
-        public void PutProject(Guid ProjektId,ProjektPostDTO projekt)
+        public void PutProject(Guid ProjektId, ProjektPostDTO projekt)
         {
 
             var projektentity = projektRepository.GetById(ProjektId);
 
             if (projektentity is null)
                 throw new Exception();
-             projektentity = _mapper.Map<ProjektPostDTO,Projekt>(projekt,projektentity);
- 
+            projektentity = _mapper.Map<ProjektPostDTO, Projekt>(projekt, projektentity);
+
             projektRepository.Update(projektentity);
             _unitOfWork.Save();
         }
-        public void PatchProject(Guid ProjektId,JsonPatchDocument patchDoc)
+        public void PatchProject(Guid ProjektId, JsonPatchDocument patchDoc)
         {
             var project = projektRepository.GetById(ProjektId);
             if (project is null)
@@ -106,11 +106,11 @@ namespace Domain.Concrete
             _unitOfWork.Save();
 
         }
-        
+
 
     }
 
 
 
-    
+
 }

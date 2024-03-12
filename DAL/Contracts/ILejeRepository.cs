@@ -11,6 +11,6 @@ namespace DAL.Contracts
     {
         IEnumerable<Leje> GetAllLeje();
     }
-    
+
 
 }

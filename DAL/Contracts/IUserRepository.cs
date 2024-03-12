@@ -26,8 +26,8 @@ namespace DAL.Contracts
             AppUser GetById(Guid id);
             AppUser GetByUserName(string username);
             bool IsRegistered(Guid id);
-           // ICollection<UserRoli> GetRolesOfUser(Guid userId);
-          //  ICollection<UserPervojePune> GetPPOfUser(Guid userId);
+            // ICollection<UserRoli> GetRolesOfUser(Guid userId);
+            //  ICollection<UserPervojePune> GetPPOfUser(Guid userId);
         }
     }
 }

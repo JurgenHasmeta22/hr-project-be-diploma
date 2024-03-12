@@ -22,7 +22,7 @@ namespace Domain.Concrete
         private ILejeRepository lejeRepository => _unitOfWork.GetRepository<ILejeRepository>();
         private IUserRepository userRepository => _unitOfWork.GetRepository<IUserRepository>();
 
-        public LejeDTO AddLeje(Guid UserId,LejePostDTO leje)
+        public LejeDTO AddLeje(Guid UserId, LejePostDTO leje)
         {
             var lejeEntity = _mapper.Map<Leje>(leje);
             lejeEntity.LejeId = Guid.NewGuid();
@@ -39,7 +39,7 @@ namespace Domain.Concrete
         {
             var leje = lejeRepository.GetById(LejeId);
             if (leje is null)
-                throw new Exception();              
+                throw new Exception();
 
             lejeRepository.Remove(LejeId);
             _unitOfWork.Save();
@@ -50,7 +50,7 @@ namespace Domain.Concrete
             IEnumerable<Leje> lejet = lejeRepository.GetAllLeje();
 
             return _mapper.Map<IList<LejeDTOwithUser>>(lejet);
-           
+
         }
 
         public LejeDTO GetLejeById(Guid LejeId)

@@ -14,6 +14,6 @@ namespace DTO.UserDTO
         public Guid UserId { get; set; }
         public Guid ProjektId { get; set; }
         public virtual Projekt1DTO Projekt { get; set; } = null!;
-        
+
     }
 }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DTO.EdukimDTO
 {
-    public  class UserEdukimDTO1
+    public class UserEdukimDTO1
     {
         public double Mesatarja { get; set; }
         public DateTime DataFillim { get; set; }
@@ -19,7 +19,7 @@ namespace DTO.EdukimDTO
 
         public Guid UserId { get; set; }
         public Guid EduId { get; set; }
-        public virtual UserDTO1 User { get; set; }=null!;
+        public virtual UserDTO1 User { get; set; } = null!;
 
     }
 }

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Domain.Contracts
 {
-    public  interface IEdukimDomain
+    public interface IEdukimDomain
     {
         EdukimDTO AddEdukim(EdukimPostDTO edukim);
         IList<EdukimDTO1> getAllEdukim();
@@ -17,7 +17,7 @@ namespace Domain.Contracts
 
         void PutEdukim(Guid EduId, EdukimPostDTO edukim);
         void DeleteEdukim(Guid EduId);
-       
+
 
     }
 }

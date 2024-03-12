@@ -6,10 +6,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Domain.Contracts {
-	public interface IAccountDomain {
-		TokenDTO Register(RegisterDTO registerDTO);
-		TokenDTO Login(LoginDTO loginDTO);
-		void ChangePassword(PasswordChangeDTO passwordChangeDTO);
-	}
+namespace Domain.Contracts
+{
+    public interface IAccountDomain
+    {
+        TokenDTO Register(RegisterDTO registerDTO);
+        TokenDTO Login(LoginDTO loginDTO);
+        void ChangePassword(PasswordChangeDTO passwordChangeDTO);
+    }
 }

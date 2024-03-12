@@ -46,13 +46,13 @@ namespace Domain.Concrete
 
             }
 
-            catch (Exception )
+            catch (Exception)
             {
-                throw ;
+                throw;
             }
         }
 
-      
+
 
         public EdukimDTO GetEdukimById(Guid EduId)
         {
@@ -60,7 +60,7 @@ namespace Domain.Concrete
             return _mapper.Map<EdukimDTO>(edukim);
         }
 
-       
+
 
         public void PutEdukim(Guid EduId, EdukimPostDTO edukim)
         {
@@ -74,7 +74,7 @@ namespace Domain.Concrete
             _unitOfWork.Save();
         }
 
-         public  IList<EdukimDTO1> getAllEdukim()
+        public IList<EdukimDTO1> getAllEdukim()
         {
             IEnumerable<Edukim> edukims = EdukimRepository.GetAll();
 

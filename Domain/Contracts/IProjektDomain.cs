@@ -12,17 +12,17 @@ namespace Domain.Contracts
 {
     public interface IProjektDomain
     {
-         ProjektDTO AddProject(ProjektPostDTO projekt);
-         
-         IList<Projekt1DTO> getAllProjects();
+        ProjektDTO AddProject(ProjektPostDTO projekt);
 
-         ProjektDTO GetProjectById(Guid ProjektId); 
+        IList<Projekt1DTO> getAllProjects();
 
-         void PutProject(Guid ProjektId,ProjektPostDTO projekt);
+        ProjektDTO GetProjectById(Guid ProjektId);
 
-         void DeleteProject(Guid ProjektId);
+        void PutProject(Guid ProjektId, ProjektPostDTO projekt);
 
-          void PatchProject(Guid ProjektId,JsonPatchDocument patchDoc);
-        
+        void DeleteProject(Guid ProjektId);
+
+        void PatchProject(Guid ProjektId, JsonPatchDocument patchDoc);
+
     }
 }

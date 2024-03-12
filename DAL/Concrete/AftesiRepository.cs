@@ -12,7 +12,7 @@ namespace DAL.Concrete
     internal class AftesiRepository : BaseRepository<Aftesi, Guid>, IAftesiRepository
     {
 
-        public AftesiRepository( HRDBContext dbContext) : base(dbContext)
+        public AftesiRepository(HRDBContext dbContext) : base(dbContext)
         {
         }
         public Aftesi GetById(Guid id)
