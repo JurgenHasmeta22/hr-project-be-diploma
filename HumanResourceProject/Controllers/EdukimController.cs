@@ -29,6 +29,7 @@ namespace HumanResourceProject.Controllers
                 {
                     return BadRequest();
                 }
+
                 var edukim = _EdukimDomain.getAllEdukim();
 
                 if (edukim != null)
@@ -60,6 +61,7 @@ namespace HumanResourceProject.Controllers
                     return BadRequest("EdukimPostDTO object is null");
 
                 var CreateEdukim = _EdukimDomain.AddEdukim(edukim);
+
                 return Ok(CreateEdukim);
             }
             catch (Exception ex)
@@ -98,6 +100,7 @@ namespace HumanResourceProject.Controllers
             {
                 if (!ModelState.IsValid)
                     return BadRequest();
+                    
                 _EdukimDomain.DeleteEdukim(EduId);
                 return NoContent();
             }

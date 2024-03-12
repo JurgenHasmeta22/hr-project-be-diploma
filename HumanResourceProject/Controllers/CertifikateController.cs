@@ -27,6 +27,7 @@ namespace HumanResourceProject.Controllers
                 {
                     return BadRequest();
                 }
+
                 var certifikate = _CertifikateDomain.getAllCertifikate();
 
                 if (certifikate != null)
@@ -58,6 +59,7 @@ namespace HumanResourceProject.Controllers
                     return BadRequest("CertifikatePostDTO object is null");
 
                 var CreateCertifikate = _CertifikateDomain.AddCertifikate(certifikate);
+
                 return Ok(CreateCertifikate);
             }
             catch (Exception ex)
@@ -96,6 +98,7 @@ namespace HumanResourceProject.Controllers
             {
                 if (!ModelState.IsValid)
                     return BadRequest();
+                    
                 _CertifikateDomain.DeleteCertifikate(CertId);
                 return NoContent();
             }

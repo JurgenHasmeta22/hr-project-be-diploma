@@ -9,7 +9,7 @@ namespace DTO.AccountDTO
 {
     public class LoginDTO
     {
-        public string userName { get; set; }
-        public string Password { get; set; }
+        public string userName { get; set; } = null!;
+        public string Password { get; set; } = null!;
     }
 }

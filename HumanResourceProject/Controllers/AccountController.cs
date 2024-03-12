@@ -55,6 +55,7 @@ namespace HumanResourceProject.Controllers
                 {
                     return BadRequest();
                 }
+                
                 var user = _accountDomain.Login(loginDTO);
 
                 if (user != null)

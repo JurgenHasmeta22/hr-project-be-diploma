@@ -79,7 +79,7 @@ namespace HumanResourceProject.Controllers
 
                 return NoContent();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return NotFound();
             }
@@ -114,11 +114,12 @@ namespace HumanResourceProject.Controllers
             {
                 if (!ModelState.IsValid)
                     return BadRequest();
+                    
                 var pushimi = _pushimetZyrtareDomain.GetPushimById(PushimId);
 
                 return Ok(pushimi);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw;
             }

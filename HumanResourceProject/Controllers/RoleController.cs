@@ -25,6 +25,7 @@ namespace HumanResourceProject.Controllers
                 {
                     return BadRequest();
                 }
+
                 var role = _roliDomain.AddRole(roleDTO);
 
                 if (role != null)
@@ -51,6 +52,7 @@ namespace HumanResourceProject.Controllers
                 {
                     return BadRequest();
                 }
+
                 var roles = _roliDomain.GetAllRoles();
 
                 if (roles != null)
@@ -77,6 +79,7 @@ namespace HumanResourceProject.Controllers
                 {
                     return BadRequest();
                 }
+
                 var role = _roliDomain.GetRoleById(id);
 
                 if (role != null)
@@ -107,6 +110,7 @@ namespace HumanResourceProject.Controllers
                 {
                     return BadRequest();
                 }
+
                 var role = _roliDomain.GetRoleByName(name);
 
                 if (role != null)
@@ -183,6 +187,7 @@ namespace HumanResourceProject.Controllers
                 {
                     return BadRequest();
                 }
+                
                 var roles = _roliDomain.GetRoles(userId);
 
                 if (roles != null)

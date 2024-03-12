@@ -13,7 +13,7 @@ namespace DTO.AccountDTO
         public string UserFirstname { get; set; } = null!;
         public string UserLastname { get; set; } = null!;
         public string UserEmail { get; set; } = null!;
-        public IEnumerable<string> roles { get; set; }
+        public IEnumerable<string> roles { get; set; } = null!;
         public string Password { get; set; } = null!;
     }
 }

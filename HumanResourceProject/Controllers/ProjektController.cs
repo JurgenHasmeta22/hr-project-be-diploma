@@ -115,6 +115,7 @@ namespace HumanResourceProject.Controllers
             {
                 if (!ModelState.IsValid)
                     return BadRequest();
+                    
                 var project = _projektDomain.GetProjectById(ProjektId);
 
                 if (project != null)
@@ -122,7 +123,7 @@ namespace HumanResourceProject.Controllers
 
                 return NotFound();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw;
             }

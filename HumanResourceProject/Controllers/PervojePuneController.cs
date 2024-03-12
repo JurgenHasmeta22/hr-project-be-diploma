@@ -26,6 +26,7 @@ namespace HumanResourceProject.Controllers
                 {
                     return BadRequest();
                 }
+
                 var pervojePune = _pervojePuneDomain.AddPervojePune(ppDTO);
 
                 if (pervojePune != null)
@@ -52,6 +53,7 @@ namespace HumanResourceProject.Controllers
                 {
                     return BadRequest();
                 }
+
                 var pervojatPune = _pervojePuneDomain.GetAllPervojePune();
 
                 if (pervojatPune != null)
@@ -78,6 +80,7 @@ namespace HumanResourceProject.Controllers
                 {
                     return BadRequest();
                 }
+
                 var pervojePune = _pervojePuneDomain.GetPervojePune(PPId);
 
                 if (pervojePune != null)
@@ -108,6 +111,7 @@ namespace HumanResourceProject.Controllers
                 {
                     return BadRequest();
                 }
+
                 var pervojePune = _pervojePuneDomain.GetPervojePune(name);
 
                 if (pervojePune != null)
@@ -184,6 +188,7 @@ namespace HumanResourceProject.Controllers
                 {
                     return BadRequest();
                 }
+
                 var pps = _pervojePuneDomain.GetPPs(userId);
 
                 if (pps != null)
@@ -214,6 +219,7 @@ namespace HumanResourceProject.Controllers
                 {
                     return BadRequest();
                 }
+                
                 var users = _pervojePuneDomain.GetUsers(PPId);
 
                 if (users != null)

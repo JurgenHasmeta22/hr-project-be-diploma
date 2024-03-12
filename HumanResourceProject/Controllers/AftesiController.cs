@@ -28,6 +28,7 @@ namespace HumanResourceProject.Controllers
                 {
                     return BadRequest();
                 }
+
                 var aftesi = _AftesiDomain.getAllAftesi();
 
                 if (aftesi != null)
@@ -59,6 +60,7 @@ namespace HumanResourceProject.Controllers
                     return BadRequest("AftesiPostDTO object is null");
 
                 var CreateAftesi = _AftesiDomain.AddAftesi(aftesi);
+
                 return Ok(CreateAftesi);
             }
             catch (Exception ex)
@@ -97,6 +99,7 @@ namespace HumanResourceProject.Controllers
             {
                 if (!ModelState.IsValid)
                     return BadRequest();
+
                 _AftesiDomain.DeleteAftesi(AftesiId);
                 return NoContent();
             }
@@ -116,6 +119,7 @@ namespace HumanResourceProject.Controllers
                 {
                     return BadRequest();
                 }
+                
                 _AftesiDomain.PutAftesi(AftesiId, aftesi);
                 return NoContent();
             }
